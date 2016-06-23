@@ -15,7 +15,7 @@ Move multiple tabs at once (think long and hard about this one)
 Think about the new window positions
 Control window positions
 
-- Keybinds: 
+- Keybinds:
 Have options to set keybinds
 Show keybinds whenver possible
 not too much window management
@@ -26,3 +26,15 @@ Show snapshots of what the windows look like
 Have window screenshots appear
 REACT EVERYTHING!
 
+```
+// this lists all of the windows and all of the tabs
+chrome.windows.getAll({populate:true},function(windows){
+  windows.forEach(function(window){
+    window.tabs.forEach(function(tab){instead
+      console.log("window ID", tab.windowId, "Tab ID", tab.id);
+    });
+  });
+});
+// this moves a tab between windows (get the ids from the above function)
+chrome.tabs.move(1227, {windowId: 1067, index: -1}, function(){console.log("done!")})
+```
