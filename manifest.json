@@ -9,6 +9,8 @@
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "tabs",
+    "desktopCapture",
+    "https://ajax.googleapis.com/",
   ]
 }
