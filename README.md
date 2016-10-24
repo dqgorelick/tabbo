@@ -1,40 +1,31 @@
-### Tab Management Hotkeys
+### Chrome Tab Management Hotkeys!
+![](./tabbo_screenshot_1.png)
 
-TODO:
-- Create issues pages for each of the bullets
-- Make extension work for both hotkeys and mouse
-- Tabs:
+### What is this??
+Tabbo is a hotkeys management tool built specially for Google Chrome. It is built with the intention to be combined with other window management softwares to maximize productivity, and minimize the annoying mouse draggy, sometimes accidentally pop-offing, vanilla chrome UI/UX.
 
-  - Move tab between open windows
-  - Pop tab off to send to a new window
-  - Move tab within window
-  - Shift tab left and right (when reaching the end it will pop off)
-  - Move multiple tabs at once (think long and hard about this one)
+You can modify the hotkeys by navigating to chrome://settings/extensions/configureCommands in your chrome window.
 
-- Windows:
-  - Think about the new window positions
-  - Control window positions
+The app features hotkeys for:
+- moving tabs left and right
+- popping tabs off of the current window
+- sending tabs between windows (with custom UI)
 
-- Keybinds:
-  - Have options to set keybinds
-  - Show keybinds whenver possible
-  - not too much window management
+We hope you all enjoy,
 
-- Extras:
-  - Have advanced mode where keybinds and extra HUDs don't show up
-  - Show snapshots of what the windows look like
-  - Have window screenshots appear
-  - REACT EVERYTHING!
+-Tabbo team
 
-```
-// this lists all of the windows and all of the tabs
-chrome.windows.getAll({populate:true},function(windows){
-  windows.forEach(function(window){
-    window.tabs.forEach(function(tab){instead
-      console.log("window ID", tab.windowId, "Tab ID", tab.id);
-    });
-  });
-});
-// this moves a tab between windows (get the ids from the above function)
-chrome.tabs.move(1227, {windowId: 1067, index: -1}, function(){console.log("done!")})
-```
+Disclaimer!! – Tabbo has access to the "<all_urls>" permission which gives it access to "All of your data". This allows the extension to take advantage of `captureVisibleTab` which allows you to see screenshots of your open windows (reference - https://developer.chrome.com/extensions/tabs). No data is being had.
+
+
+#### How can I contribute??
+If you have any ideas you'd like us to implement, you can make an issue and we can look into making it a reality!
+
+Alternatively, if you'd like to implement it on your own, you are welcome to fork the repo and make a pull request. We will review in as timely a manner as we can.
+
+If anything else, you can send me an email at `dqgorelick (at) gmail (dot) com`
+
+#### Creators
+- [Dan Gorelick](https://github.com/dqgorelick)
+- [Andy Wang](https://github.com/ownzandy)
+- [Biggie Emmanuel](https://github.com/bigolu)

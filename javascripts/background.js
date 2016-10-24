@@ -15,7 +15,7 @@ chrome.commands.onCommand.addListener(function(command) {
             popOffWindow();
             break;
         case 'send_tab':
-            sendTab();
+            sendTabManager();
         default:
             break;
     }
@@ -35,7 +35,7 @@ chrome.extension.onConnect.addListener(function(port) {
                 popOffWindow();
                 break;
             case "send":
-                sendTab();
+                sendTabManager();
                 break;
             case "explode":
                 explodeTabs();
@@ -72,21 +72,40 @@ function popOffWindow() {
     });
 }
 
-function sendTab() {
-    chrome.tabs.getSelected(function(tab) {
-        chrome.tabs.create({url : "../tabbo.html#"+tab.id}, function(newTab) {
-            chrome.tabs.onActivated.addListener(function onTabChange(response){
-                if(response.tabId !== newTab.id) {
-                    chrome.tabs.onActivated.removeListener(onTabChange);
-                    chrome.tabs.get(newTab.id, function() {
-                        if (!chrome.runtime.lastError) {
-                            chrome.tabs.remove(newTab.id);
-                        }
+function sendTabManager() {
+    chrome.windows.getAll({populate:true},function(windows){
+        chrome.windows.getCurrent(function(currentWindow) {
+            if(windows.length === 1) {
+                // do nothing
+                return;
+            } else if (windows.length === 2) {
+                // send tab to only other window
+                chrome.tabs.getSelected(function(tab) {
+                    console.log('tab',tab);
+                    var otherWindow = windows.filter(function(filterWindow) {
+                        return (filterWindow.id !== tab.windowId);
                     });
-                }
-            })
-        });
-    })
+                    chrome.tabs.move(tab.id, {windowId: otherWindow[0].id, index: -1});
+                    return;
+                });
+            } else {
+                chrome.tabs.getSelected(function(tab) {
+                    chrome.tabs.create({url : "../tabbo.html#"+tab.id}, function(newTab) {
+                        chrome.tabs.onActivated.addListener(function onTabChange(response){
+                            if(response.tabId !== newTab.id) {
+                                chrome.tabs.onActivated.removeListener(onTabChange);
+                                chrome.tabs.get(newTab.id, function() {
+                                    if (!chrome.runtime.lastError) {
+                                        chrome.tabs.remove(newTab.id);
+                                    }
+                                });
+                            }
+                        })
+                    });
+                });
+            }
+        })
+    });
 }
 
 function explodeTabs() {

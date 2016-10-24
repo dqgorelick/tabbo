@@ -79,7 +79,7 @@ function selectWindow(eachWindow, toSendId) {
 }
 
 function sendTab(windowId, tabId) {
-    chrome.tabs.move(tabId, {windowId: windowId, index: -1})
+    chrome.tabs.move(tabId, {windowId: windowId, index: -1});
 }
 
 var port = chrome.extension.connect({name: "tabbo in we go!"});
