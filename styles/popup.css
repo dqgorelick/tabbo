@@ -1,31 +1,31 @@
 html {
-    width: 150px;
-    text-align: center;
+	width: 150px;
+	text-align: center;
 }
 h4 {
-    margin: 5px auto;
+	margin: 5px auto;
 }
 .cta {
-    border-radius: 4px;
-    cursor: pointer;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 6px 10px;
-    margin-bottom: 5px;
-    background-color: #B02519;
+	border-radius: 4px;
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 6px 10px;
+	margin-bottom: 5px;
+	background-color: #B02519;
 }
 
 .cta:hover {
-    background-color: #66150F;
+	background-color: #66150F;
 }
 
 .bonus {
-    background-color: transparent;
-    color: #B02519;
+	background-color: transparent;
+	color: #B02519;
 }
 
 .bonus:hover {
-    background-color: transparent;
-    color: #66150F;
+	background-color: transparent;
+	color: #66150F;
 }
 
