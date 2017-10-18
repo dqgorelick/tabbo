@@ -90,9 +90,13 @@ function nextTab(lowerBound, upperBound, currentIndex) {
 function popOffWindow() {
 	utils.getCurrentWindow({populate: true}).then((w) => {
 		if (w.tabs.length !== 1) {
+			let externalTab;
 			utils.getCurrentTab().then((tab) => {
-				chrome.windows.create({tabId: tab.id});
-			});
+				externalTab = tab;
+				return utils.createWindow({tabId: tab.id});
+			}).then(() => {
+				utils.updateTab(externalTab.id, {pinned: true});
+			});;
 		}
 	});
 }
@@ -117,7 +121,7 @@ function sendTabManager() {
 
 				chrome.tabs.move(tab.id, {windowId: otherWindow[0].id, index: -1});
 				chrome.windows.update(otherWindow[0].id, {focused: true});
-				chrome.tabs.update(tab.id, {selected: true});
+				chrome.tabs.update(tab.id, {selected: true, pinned: tab.pinned});
 			});
 		} else {
 			utils.getCurrentTab().then((tab) => {
