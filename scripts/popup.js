@@ -27,15 +27,15 @@ document.querySelector('#bonus').addEventListener('click', () => {
 	bonusClicked += 1;
 
 	if (bonusClicked === 1) {
-		bonusElem.innerHTML('stop it');
+		bonusElem.innerHTML = 'stop it';
 	} else if (bonusClicked === 2) {
-		bonusElem.innerHTML('I\'m warning you');
+		bonusElem.innerHTML = 'I\'m warning you';
 	} else if (bonusClicked === 3) {
-		bonusElem.innerHTML('last warning...');
+		bonusElem.innerHTML = 'last warning...';
 	}
 
 	if (bonusClicked > 3) {
-		bonusElem.innerHTML('explode!!');
+		bonusElem.innerHTML = 'explode!!';
 		port.postMessage('explode');
 	}
 });

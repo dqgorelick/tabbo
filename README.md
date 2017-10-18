@@ -33,5 +33,3 @@ Original creators:
 
 Continued Support:
 - [Jun Woo Shin](https://github.com/jwoos)
-
-Forked to keep updated with features and bug fixes.
