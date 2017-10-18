@@ -6,6 +6,13 @@ window.utils = {
 			});
 		});
 	},
+	updateTab: (id, options) => {
+		return new Promise((resolve, reject) => {
+			chrome.tabs.update(id, options, (tab) => {
+				resolve(tab);
+			});
+		});
+	},
 	getCurrentTab: () => {
 		return new Promise((resolve, reject) => {
 			chrome.tabs.getSelected((tab) => {
@@ -29,6 +36,13 @@ window.utils = {
 		return new Promise((resolve, reject) => {
 			chrome.windows.getCurrent(options, (currentWindow) => {
 				resolve(currentWindow);
+			});
+		});
+	},
+	createWindow: (options) => {
+		return new Promise((resolve, reject) => {
+			chrome.windows.create(options, (w) => {
+				resolve(w);
 			});
 		});
 	},
