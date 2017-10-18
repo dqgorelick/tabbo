@@ -12,6 +12,10 @@ document.querySelector('#pop').addEventListener('click', () => {
 	port.postMessage('pop');
 });
 
+document.querySelector('#join').addEventListener('click', () => {
+	port.postMessage('join');
+});
+
 document.querySelector('#send').addEventListener('click', () => {
 	port.postMessage('send');
 });
