@@ -95,7 +95,7 @@ function popOffWindow() {
 				externalTab = tab;
 				return utils.createWindow({tabId: tab.id});
 			}).then(() => {
-				utils.updateTab(externalTab.id, {pinned: true});
+				utils.updateTab(externalTab.id, {pinned: externalTab.pinned});
 			});;
 		}
 	});
