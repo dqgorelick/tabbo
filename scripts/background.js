@@ -52,30 +52,33 @@ chrome.extension.onConnect.addListener((port) => {
 });
 
 function moveTab(direction) {
-	Promise.all([
-		utils.tabQuery({currentWindow: true, pinned: true}),
-		utils.tabQuery({currentWindow: true, pinned: false}),
-		utils.getCurrentTab()
-	]).then((resolution) => {
-		const pinnedTabs = resolution[0];
-		const unpinnedTabs = resolution[1];
-		const tabs = Array.prototype.concat(pinnedTabs, unpinnedTabs);
-		const tab = resolution[2];
+	utils.tabQuery({currentWindow: true}).then((allTabs) => {
+		const pinnedTabs = allTabs.filter((e) => e.pinned);
+		const nonPinnedTabs = allTabs.filter((e) => !e.pinned);
 
+		const highlightedTabs = allTabs.filter((e) => e.highlighted);
+		const nonHighlightedTabs = allTabs.filter((e) => !e.highlighted);
+
+		const tab = highlightedTabs[0];
 		const currentIndex = tab.index;
+
 		let newIndex, lowerBound, upperBound;
 
 		if (tab.pinned) {
 			lowerBound = 0;
-			upperBound = pinnedTabs.length - 1;
+			upperBound = pinnedTabs.length - highlightedTabs.length;
 		} else {
 			lowerBound = pinnedTabs.length;
-			upperBound = tabs.length - 1;
+			upperBound = allTabs.length - highlightedTabs.length;
 		}
 
 		newIndex = (direction === directions.LEFT) ? prevTab(lowerBound, upperBound, currentIndex) : nextTab(lowerBound, upperBound, currentIndex);
 
-		chrome.tabs.move(tab.id, {index: newIndex});
+		if (direction === directions.LEFT) {
+			chrome.tabs.move(highlightedTabs.map((t) => t.id), {index: newIndex});
+		} else {
+			chrome.tabs.move(highlightedTabs.map((t) => t.id), {index: (highlightedTabs.length > 1) ? newIndex + highlightedTabs.length - 1 : newIndex});
+		}
 	});
 }
 
