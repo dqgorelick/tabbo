@@ -15,15 +15,14 @@ We hope you all enjoy,
 
 \- Tabbo team
 
-Disclaimer!! – Tabbo has access to the "<all_urls>" permission which gives it access to "All of your data". This allows the extension to take advantage of `captureVisibleTab` which allows you to see screenshots of your open windows (reference - https://developer.chrome.com/extensions/tabs). No data is being had.
+## Disclaimer
+Tabbo has access to the `"<all_urls>"` permission which gives it access to "All of your data". This allows the extension to take advantage of `captureVisibleTab` which allows you to see screenshots of your open windows (reference - https://developer.chrome.com/extensions/tabs). No data is being had.
 
 
 #### How can I contribute??
 If you have any ideas you'd like us to implement, you can make an issue and we can look into making it a reality!
 
 Alternatively, if you'd like to implement it on your own, you are welcome to fork the repo and make a pull request. We will review in as timely a manner as we can.
-
-If anything else, you can send me an email at `dqgorelick (at) gmail (dot) com`
 
 ## Creators
 Original creators:
