@@ -7,9 +7,11 @@ if [[ ! -d 'webextension-polyfill' ]]; then
 	git submodule update
 fi
 
-pushd webextension-polyfill
+if [[ $1 == 'update' ]]; then
+	git submodule update --remote --merge
+fi
 
-git pull origin master
+pushd webextension-polyfill
 
 npm install
 
