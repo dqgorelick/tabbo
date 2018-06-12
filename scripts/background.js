@@ -1,4 +1,4 @@
-const utils = window.utils;
+const api = window.api;
 
 const directions = {
 	LEFT: 0,
@@ -25,16 +25,16 @@ chrome.commands.onCommand.addListener((command) => {
 
 // listener to the client
 chrome.extension.onConnect.addListener((port) => {
-	port.onMessage.addListener((msg) => {
+	port.onMessage.addListener(async (msg) => {
 		switch(msg) {
 			case 'keybinds' :
-				chrome.tabs.create({url : 'chrome://extensions/configureCommands'});
+				await api.tab.create({url : 'chrome://extensions/configureCommands'});
 				break;
 			case 'instructions' :
-				chrome.tabs.create({url : '../instructions.html'});
+				await api.tab.create({url : '../instructions.html'});
 				break;
 			case 'pop':
-				popOffWindow();
+				await popOffWindow();
 				break;
 			case 'send':
 				sendTabManager();
@@ -51,32 +51,26 @@ chrome.extension.onConnect.addListener((port) => {
 	});
 });
 
-function moveTab(direction) {
-	Promise.all([
-		utils.tabQuery({currentWindow: true, pinned: true}),
-		utils.tabQuery({currentWindow: true, pinned: false}),
-		utils.getCurrentTab()
-	]).then((resolution) => {
-		const pinnedTabs = resolution[0];
-		const unpinnedTabs = resolution[1];
-		const tabs = Array.prototype.concat(pinnedTabs, unpinnedTabs);
-		const tab = resolution[2];
+async function moveTab(direction) {
+	const pinnedTabs = await api.tab.query({currentWindow: true, pinned: true});
+	const unpinnedTabs = await api.tab.query({currentWindow: true, pinned: false});
+	const tabs = Array.prototype.concat(pinnedTabs, unpinnedTabs);
+	const tab = await api.tab.getCurrent();
 
-		const currentIndex = tab.index;
-		let newIndex, lowerBound, upperBound;
+	const currentIndex = tab.index;
+	let newIndex, lowerBound, upperBound;
 
-		if (tab.pinned) {
-			lowerBound = 0;
-			upperBound = pinnedTabs.length - 1;
-		} else {
-			lowerBound = pinnedTabs.length;
-			upperBound = tabs.length - 1;
-		}
+	if (tab.pinned) {
+		lowerBound = 0;
+		upperBound = pinnedTabs.length - 1;
+	} else {
+		lowerBound = pinnedTabs.length;
+		upperBound = tabs.length - 1;
+	}
 
-		newIndex = (direction === directions.LEFT) ? prevTab(lowerBound, upperBound, currentIndex) : nextTab(lowerBound, upperBound, currentIndex);
+	newIndex = (direction === directions.LEFT) ? prevTab(lowerBound, upperBound, currentIndex) : nextTab(lowerBound, upperBound, currentIndex);
 
-		chrome.tabs.move(tab.id, {index: newIndex});
-	});
+	await api.tab.move(tab.id, {index: newIndex});
 }
 
 function prevTab(lowerBound, upperBound, currentIndex) {
@@ -87,108 +81,89 @@ function nextTab(lowerBound, upperBound, currentIndex) {
 	return (currentIndex === upperBound) ? lowerBound : currentIndex + 1;
 }
 
-function popOffWindow() {
-	utils.getCurrentWindow({populate: true}).then((w) => {
-		if (w.tabs.length !== 1) {
-			let externalTab;
-			utils.getCurrentTab().then((tab) => {
-				externalTab = tab;
-				return utils.createWindow({tabId: tab.id});
-			}).then(() => {
-				utils.updateTab(externalTab.id, {pinned: externalTab.pinned});
-			});;
-		}
-	});
+async function popOffWindow() {
+	const w = await api.window.getCurrent({populate:true});
+	if (w.tabs.length !== 1) {
+		const tab = await api.tab.getCurrent();
+		await api.window.create({tabId: tab.id});
+		await api.tab.update(tab.id, {pinned: tab.pinned});
+	}
 }
 
-function sendTabManager() {
-	Promise.all([
-		utils.getAllWindows({populate: true}),
-		utils.getCurrentWindow()
-	]).then((resolution) => {
-		const windows = resolution[0];
-		const currentWindow = resolution[1];
+async function sendTabManager() {
+	const windows = await api.window.getAll({populate: true});
+	const currentWindow = await api.window.getCurrent();
 
-		if (windows.length === 1) {
-			// do nothing
-			return;
-		} else if (windows.length === 2) {
-			// send tab to only other window
-			utils.getCurrentTab().then((tab) => {
-				const otherWindow = windows.filter((filterWindow) => {
-					return (filterWindow.id !== tab.windowId);
-				});
+	if (windows.length === 1) {
+		// do nothing
+		return;
+	} else if (windows.length === 2) {
+		// send tab to only other window
+		const tab = await api.tab.getCurrent();
+		const otherWindow = windows.filter((filterWindow) => {
+			return (filterWindow.id !== tab.windowId);
+		});
 
-				chrome.tabs.move(tab.id, {windowId: otherWindow[0].id, index: -1});
-				chrome.windows.update(otherWindow[0].id, {focused: true});
-				chrome.tabs.update(tab.id, {selected: true, pinned: tab.pinned});
-			});
-		} else {
-			utils.getCurrentTab().then((tab) => {
-				return utils.createTab({url : `../tabbo.html#${tab.id}`});
-			}).then((newTab) => {
-				console.log(newTab);
-				const onTabChange = (response) => {
-					if (response.tabId !== newTab.id) {
-						chrome.tabs.onActivated.removeListener(onTabChange);
+		chrome.tabs.move(tab.id, {windowId: otherWindow[0].id, index: -1});
+		chrome.windows.update(otherWindow[0].id, {focused: true});
+		chrome.tabs.update(tab.id, {selected: true, pinned: tab.pinned});
+	} else {
+		const tab = await api.tab.getCurrent();
+		const newTab = await api.tab.create({url : `../tabbo.html#${tab.id}`});
 
-						utils.getTab(newTab.id).then(() => {
-							if (!chrome.runtime.lastError) {
-								chrome.tabs.remove(newTab.id);
-							}
-						}, (e) => {
-							console.error(e);
-						});
-					}
-				};
+		chrome.tabs.onActivated.addListener(async (response) => {
+			if (response.tabId !== newTab.id) {
+				chrome.tabs.onActivated.removeListener(onTabChange);
 
-				chrome.tabs.onActivated.addListener(onTabChange);
-			});
-		}
-	});
+				await api.tab.get(newTab.id);
+
+				if (!chrome.runtime.lastError) {
+					chrome.tabs.remove(newTab.id);
+				}
+			}
+		});
+	}
 }
 
 function explodeTabs() {
-	utils.getAllWindows({populate: true}).then((chromeWindows) => {
-		chromeWindows.forEach((chromeWindow) => {
-			chromeWindow.tabs.forEach((tab) => {
-				const width = Math.floor((Math.random() * (screen.width * 0.75)) + 1);
-				const height = Math.floor((Math.random() * (screen.height * 0.75)) + 1);
+	const chromeWindows = api.window.getAll({populate: true});
+	chromeWindows.forEach((chromeWindow) => {
+		chromeWindow.tabs.forEach((tab) => {
+			const width = Math.floor((Math.random() * (screen.width * 0.75)) + 1);
+			const height = Math.floor((Math.random() * (screen.height * 0.75)) + 1);
 
-				chrome.windows.create({
-					tabId: tab.id,
-					width: width,
-					height: height,
-					left: Math.floor(Math.random() * (screen.width - width) + 1),
-					top: Math.floor(Math.random() * (screen.height - height) + 1),
-				});
+			chrome.windows.create({
+				tabId: tab.id,
+				width: width,
+				height: height,
+				left: Math.floor(Math.random() * (screen.width - width) + 1),
+				top: Math.floor(Math.random() * (screen.height - height) + 1),
 			});
 		});
 	});
 }
 
 function joinTabs() {
-	utils.getAllWindows({populate: true}).then((chromeWindows) => {
-		let isFirstWindow = true;
-		let firstWindowId = null;
+	const chromeWindows = api.window.getAll({populate: true});
+	let isFirstWindow = true;
+	let firstWindowId = null;
 
-		chromeWindows.forEach((chromeWindow) =>{
-			if (isFirstWindow) {
-				isFirstWindow = false;
-				firstWindowId = chromeWindow.id;
+	chromeWindows.forEach((chromeWindow) =>{
+		if (isFirstWindow) {
+			isFirstWindow = false;
+			firstWindowId = chromeWindow.id;
 
-				// make it fullscreen
-				chrome.windows.update(firstWindowId, {
-					left: 0,
-					top: 0,
-					width: screen.width,
-					height: screen.height
-				});
-			} else {
-				chromeWindow.tabs.forEach((tab) => {
-					chrome.tabs.move(tab.id, {windowId: firstWindowId, index: -1});
-				});
-			}
-		});
+			// make it fullscreen
+			chrome.windows.update(firstWindowId, {
+				left: 0,
+				top: 0,
+				width: screen.width,
+				height: screen.height
+			});
+		} else {
+			chromeWindow.tabs.forEach((tab) => {
+				chrome.tabs.move(tab.id, {windowId: firstWindowId, index: -1});
+			});
+		}
 	});
 }
