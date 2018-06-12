@@ -7,7 +7,7 @@
 	"name": "Tabbo",
 	"description": "Tab Management Hotkeys",
 	"short_name": "Tabbo – Tab Management Hotkeys",
-	"version": "0.9.6",
+	"version": "0.10.0",
 	"icons": {
 		"16": "images/tabbo16.png",
 		"48": "images/tabbo48.png",
@@ -16,11 +16,11 @@
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["scripts/utils.js"]
+			"js": ["scripts/api.js"]
 		}
 	],
 	"background": {
-		"scripts": ["scripts/utils.js", "scripts/background.js"]
+		"scripts": ["scripts/api.js", "scripts/background.js"]
 	},
 	"permissions": [
 		"tabs",

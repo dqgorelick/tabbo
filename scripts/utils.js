@@ -1,3 +1,4 @@
+// deprecated
 window.utils = {
 	tabQuery: (options) => {
 		return new Promise((resolve, reject) => {
