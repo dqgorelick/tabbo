@@ -56,7 +56,7 @@ Promise.all([
 	browser.tabs.get(toSendId).then((tab) => {
 		document.querySelector('#current-tab').innerHTML = `<div class="title-bar"><img src="${tab.favIconUrl}"/>` +
 			`<div class="screen-title">${tab.title}</div></div>`;
-	}, (e) => console.log(e));
+	});
 });
 
 document.querySelector('body').addEventListener('keydown', (e) => {

@@ -31,6 +31,7 @@ browser.runtime.onConnect.addListener((port) => {
 	port.onMessage.addListener(async (msg) => {
 		switch(msg) {
 			case 'keybinds' :
+				// FIXME put in firefox too
 				await browser.tabs.create({url : 'chrome://extensions/configureCommands'});
 				break;
 			case 'instructions' :

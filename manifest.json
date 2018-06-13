@@ -25,7 +25,6 @@
 	},
 	"permissions": [
 		"tabs",
-		"chrome://favicon/",
 		"activeTab",
 		"<all_urls>"
 	],
@@ -34,29 +33,25 @@
 			"suggested_key": {
 				"default": "Ctrl+P"
 			},
-			"description": "Keybind to pop off the tab",
-			"global": false
+			"description": "Keybind to pop off the tab"
 		},
 		"move_right": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+Period"
 			},
-			"description": "move current tab to the right",
-			"global": false
+			"description": "move current tab to the right"
 		},
 		"move_left": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+Comma"
 			},
-			"description": "move current tab to the left",
-			"global": false
+			"description": "move current tab to the left"
 		},
 		"send_tab": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+S"
 			},
-			"description": "move current tab another window",
-			"global": false
+			"description": "move current tab another window"
 		}
 	}
 }
