@@ -1,4 +1,6 @@
-const port = chrome.extension.connect({name: 'popup'});
+'use strict';
+
+const port = browser.runtime.connect({name: 'popup'});
 
 document.querySelector('#keybinds').addEventListener('click', () => {
 	port.postMessage('keybinds');
