@@ -28,8 +28,8 @@ document.querySelector('#send').addEventListener('click', () => {
 	port.postMessage('send');
 });
 
-let bonusClicked = 0;
-const bonusElem = document.querySelector('#bonus');
+let bonusClicked: int = 0;
+const bonusElem: document.Element = document.querySelector('#bonus');
 
 document.querySelector('#bonus').addEventListener('click', () => {
 	bonusClicked += 1;
