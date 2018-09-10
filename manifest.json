@@ -31,25 +31,25 @@
 	"commands": {
 		"pop_off": {
 			"suggested_key": {
-				"default": "Ctrl+P"
+				"default": "Ctrl+Shift+J"
 			},
 			"description": "Keybind to pop off the tab"
 		},
 		"move_right": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+Period"
+				"default": "Ctrl+Shift+L"
 			},
 			"description": "move current tab to the right"
 		},
 		"move_left": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+Comma"
+				"default": "Ctrl+Shift+H"
 			},
 			"description": "move current tab to the left"
 		},
 		"send_tab": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+S"
+				"default": "Ctrl+Shift+K"
 			},
 			"description": "move current tab another window"
 		}
