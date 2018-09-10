@@ -3,6 +3,8 @@
 
 import * as util from 'util.ts';
 
+import {browser} from 'webextension-polyfill-ts';
+
 
 const util = window.util;
 const toSendId = parseInt(window.location.hash.slice(1));

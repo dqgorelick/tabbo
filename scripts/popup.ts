@@ -1,6 +1,9 @@
 'use strict';
 
 
+import {browser} from 'webextension-polyfill-ts';
+
+
 const port: browser.runtime.Port = browser.runtime.connect();
 
 

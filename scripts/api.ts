@@ -1,6 +1,9 @@
 'use strict';
 
 
+import {browser} from 'webextension-polyfill-ts';
+
+
 export const tab = {
 	query: (options) => {
 		return new Promise((resolve, reject) => {
