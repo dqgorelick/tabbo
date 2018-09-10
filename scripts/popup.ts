@@ -1,6 +1,8 @@
 'use strict';
 
-const port = browser.runtime.connect({name: 'popup'});
+
+const port: browser.runtime.Port = browser.runtime.connect();
+
 
 document.querySelector('#keybinds').addEventListener('click', () => {
 	port.postMessage('keybinds');

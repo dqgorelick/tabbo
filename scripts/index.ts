@@ -1,5 +1,9 @@
 'use strict';
 
+
+import * as util from 'util.ts';
+
+
 const util = window.util;
 const toSendId = parseInt(window.location.hash.slice(1));
 

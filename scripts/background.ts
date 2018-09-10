@@ -1,6 +1,8 @@
 'use strict';
 
-const util = window.util;
+
+import * as util from 'util.ts';
+
 
 const directions = {
 	LEFT: 0,
