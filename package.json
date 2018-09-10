@@ -1,0 +1,23 @@
+{
+  "name": "tabbo",
+  "version": "1.0.0",
+  "description": "Tab management browser extension.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dqgorelick/tabbo.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dqgorelick/tabbo/issues"
+  },
+  "homepage": "https://github.com/dqgorelick/tabbo#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1"
+  }
+}

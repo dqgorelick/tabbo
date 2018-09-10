@@ -1,10 +1,14 @@
-(async () => {
-	const api = window.api;
+'use strict';
 
-	const toSendId = window.location.hash.slice(1);
+const util = window.util;
+const toSendId = parseInt(window.location.hash.slice(1));
 
-	const windows = await api.window.getAll({populate: true});
-	const current = await api.window.getCurrent();
+Promise.all([
+	browser.windows.getAll({populate: true}),
+	browser.windows.getCurrent()
+]).then((resolution) => {
+	const windows = resolution[0];
+	const current = resolution[1];
 	let count = 1;
 
 	const openWindows = document.querySelector('#open-windows');
@@ -21,65 +25,64 @@
 			return;
 		}
 
-		const img = await api.tab.screenshot(w.id, {quality: 50});
-		const num = count.toString();
+		//browser.tabs.captureVisibleTab(w.id, {format: 'jpeg', quality: 50}).then((img) => {
+			const num = count.toString();
 
-		document.querySelector('body').addEventListener('keydown', (e) => {
-			if (e.key === num) {
+			document.querySelector('body').addEventListener('keydown', (e) => {
+				if (e.key === num) {
+					selectWindow(w, toSendId);
+				}
+			});
+
+			const div = document.createElement('div');
+			div.className = 'screenshot';
+			//div.style = `background-image: url(${img})`;
+			div.innerHTML = `<div class="title-bar"> <img src="${w.tabs[0].favIconUrl}"/>
+				<div class="screen-title">${w.tabs[0].title}</div></div>
+				<div class="screen-index">${count}</div>
+				<div class="tab-count">${w.tabs.length + (w.tabs.length === 1 ? " tab" : " tabs")}
+				</div>`;
+
+			div.addEventListener('click', () => {
 				selectWindow(w, toSendId);
-			}
+			});
+
+			openWindows.appendChild(div);
+
+			count++;
+		//});
+	});
+
+	browser.tabs.get(toSendId).then((tab) => {
+		document.querySelector('#current-tab').innerHTML = `<div class="title-bar"><img src="${tab.favIconUrl}"/>` +
+			`<div class="screen-title">${tab.title}</div></div>`;
+	});
+});
+
+document.querySelector('body').addEventListener('keydown', (e) => {
+	if (e.key === 'Escape') {
+		util.tabs.getCurrent().then((tab) => {
+			browser.tabs.remove(tab.id);
 		});
-
-		const div = document.createElement('div');
-		div.className = 'screenshot';
-		div.style = `background-image: url(${img})`;
-		div.innerHTML = `<div class="title-bar"> <img src="${w.tabs[0].favIconUrl}"/>
-		<div class="screen-title">${w.tabs[0].title}</div></div>
-		<div class="screen-index">${count}</div>
-		<div class="tab-count">${w.tabs.length + (w.tabs.length === 1 ? " tab" : " tabs")}
-		</div>`;
-
-		div.addEventListener('click', () => {
-			selectWindow(w, toSendId);
-		});
-
-		openWindows.appendChild(div);
-
-		count++;
-	});
-
-	const tab = api.tab.get(parseInt(toSendId));
-	document.querySelector('#current-tab').innerHTML = `<div class="title-bar"><img src="${tab.favIconUrl}"/>` +
-		`<div class="screen-title">${tab.title}</div></div>`;
-
-	document.querySelector('body').addEventListener('keydown', async (e) => {
-		if (e.key === 'Escape') {
-			const tab = await api.tab.getSelected();
-			await api.tab.remove(tab.id);
-		}
-	})
-
-	document.querySelector('#cancel').addEventListener('click', () => {
-		const tab = await api.tab.getSelected();
-		await api.tab.remove(tab.id);
-	});
-
-	function selectWindow(eachWindow, toSendId) {
-		const tab = await api.tab.getSelected();
-		await api.tab.remove(tab.id);
-
-		sendTab(eachWindow.id, parseInt(toSendId));
 	}
+})
 
-	function sendTab(windowId, tabId) {
-		chrome.tabs.move(tabId, {windowId: windowId, index: -1});
-		chrome.windows.update(windowId, {focused: true});
-		chrome.tabs.update(tabId, {selected: true});
-	}
-
-	const port = chrome.runtime.connect({name: 'tabbo in we go!'});
-
-	document.querySelector('#keybinds').addEventListener('click', () => {
-		port.postMessage('keybinds');
+document.querySelector('#cancel').addEventListener('click', () => {
+	util.tabs.getCurrent().then((tab) => {
+		browser.tabs.remove(tab.id);
 	});
-})();
+});
+
+function selectWindow(eachWindow, toSendId) {
+	browser.tabs.move(toSendId, {windowId: eachWindow.id, index: -1}).then(() => {
+		return browser.windows.update(eachWindow.id, {focused: true});
+	}).then(() => {
+		return browser.tabs.update(toSendId, {selected: true});
+	});
+}
+
+const port = browser.runtime.connect({name: 'tabbo in we go!'});
+
+document.querySelector('#keybinds').addEventListener('click', () => {
+	port.postMessage('keybinds');
+});
