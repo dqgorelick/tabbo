@@ -1,12 +1,11 @@
 'use strict';
 
 
-import * as util from 'util.ts';
+import * as utils from 'utils.ts';
 
 import {browser} from 'webextension-polyfill-ts';
 
 
-const util = window.util;
 const toSendId = parseInt(window.location.hash.slice(1));
 
 Promise.all([
@@ -67,14 +66,14 @@ Promise.all([
 
 document.querySelector('body').addEventListener('keydown', (e) => {
 	if (e.key === 'Escape') {
-		util.tabs.getCurrent().then((tab) => {
+		utils.tabs.getCurrent().then((tab) => {
 			browser.tabs.remove(tab.id);
 		});
 	}
 })
 
 document.querySelector('#cancel').addEventListener('click', () => {
-	util.tabs.getCurrent().then((tab) => {
+	utils.tabs.getCurrent().then((tab) => {
 		browser.tabs.remove(tab.id);
 	});
 });
