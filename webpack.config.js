@@ -4,9 +4,9 @@ const path = require('path');
 module.exports = {
 	mode: 'development',
 	entry: {
-		index: './scripts/index.ts',
-		popup: './scripts/popup.ts',
-		background: './scripts/background.ts',
+		background: path.resolve(__dirname, 'src/scripts/background/index.ts'),
+		manager: path.resolve(__dirname, 'src/scripts/manager/index.ts'),
+		popup: path.resolve(__dirname, 'src/scripts/popup/index.ts'),
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -17,12 +17,11 @@ module.exports = {
 			{
 				test: /\.ts$/,
 				include: [
-					path.resolve(__dirname, 'scripts'),
+					path.resolve(__dirname, 'src/scripts'),
 					path.resolve(__dirname, 'node_modules')
 				],
 				exclude: [
 					/\.spec\.ts$/,
-					/archive/
 				],
 				loader: 'ts-loader',
 			}
@@ -31,7 +30,7 @@ module.exports = {
 	resolve: {
 		modules: [
 			path.resolve(__dirname, 'node_modules'),
-			path.resolve(__dirname, 'scripts')
+			path.resolve(__dirname, 'src/scripts')
 		],
 		extensions: ['.js', '.ts']
 	},
