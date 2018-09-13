@@ -7,26 +7,22 @@
 	"name": "Tabbo",
 	"description": "Tab Management Hotkeys",
 	"short_name": "Tabbo – Tab Management Hotkeys",
-	"version": "0.10.0",
+	"version": "0.11.0",
 	"icons": {
 		"16": "images/tabbo16.png",
 		"48": "images/tabbo48.png",
 		"128": "images/tabbo128.png"
 	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["scripts/polyfill.js", "scripts/util.js"]
-		}
-	],
+	"content_scripts": [],
 	"background": {
-		"scripts": ["scripts/polyfill.js", "scripts/util.js", "scripts/background.js"],
+		"scripts": [
+			"scripts/background.bundle.js"
+		],
 		"persistent": false
 	},
 	"permissions": [
 		"tabs",
-		"activeTab",
-		"<all_urls>"
+		"activeTab"
 	],
 	"commands": {
 		"pop_off": {
