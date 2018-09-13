@@ -25,29 +25,29 @@
 		"activeTab"
 	],
 	"commands": {
-		"pop_off": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+J"
-			},
-			"description": "Keybind to pop off the tab"
-		},
-		"move_right": {
+		"MOVE_RIGHT": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+L"
 			},
-			"description": "move current tab to the right"
+			"description": "Move current tab to the right"
 		},
-		"move_left": {
+		"MOVE_LEFT": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+H"
 			},
-			"description": "move current tab to the left"
+			"description": "Move current tab to the left"
 		},
-		"send_tab": {
+		"POP_TAB": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+J"
+			},
+			"description": "Pop current tab to new window"
+		},
+		"PUSH_TAB": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+K"
 			},
-			"description": "move current tab another window"
+			"description": "Push current tab to another window"
 		}
 	}
 }
