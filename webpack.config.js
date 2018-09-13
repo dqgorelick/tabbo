@@ -6,7 +6,7 @@ module.exports = {
 	entry: {
 		background: path.resolve(__dirname, 'src/scripts/background/index.ts'),
 		manager: path.resolve(__dirname, 'src/scripts/manager/index.ts'),
-		//popup: path.resolve(__dirname, 'src/scripts/popup/index.ts'),
+		popup: path.resolve(__dirname, 'src/scripts/popup/index.ts'),
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
