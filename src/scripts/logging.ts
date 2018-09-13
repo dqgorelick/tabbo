@@ -2,12 +2,12 @@
 
 
 export const info = (msg: string): void => {
-
+	console.info(msg);
 };
 
 
 export const warning = (msg: string): void => {
-
+	console.warn(msg);
 };
 
 
