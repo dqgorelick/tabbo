@@ -1,1 +1,0 @@
-../webextension-polyfill/dist/browser-polyfill.min.js
