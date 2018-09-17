@@ -7,51 +7,47 @@
 	"name": "Tabbo",
 	"description": "Tab Management Hotkeys",
 	"short_name": "Tabbo – Tab Management Hotkeys",
-	"version": "0.10.0",
+	"version": "0.11.0",
 	"icons": {
 		"16": "images/tabbo16.png",
 		"48": "images/tabbo48.png",
 		"128": "images/tabbo128.png"
 	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["scripts/polyfill.js", "scripts/util.js"]
-		}
-	],
+	"content_scripts": [],
 	"background": {
-		"scripts": ["scripts/polyfill.js", "scripts/util.js", "scripts/background.js"],
+		"scripts": [
+			"scripts/background.bundle.js"
+		],
 		"persistent": false
 	},
 	"permissions": [
 		"tabs",
-		"activeTab",
-		"<all_urls>"
+		"activeTab"
 	],
 	"commands": {
-		"pop_off": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+J"
-			},
-			"description": "Keybind to pop off the tab"
-		},
-		"move_right": {
+		"MOVE_RIGHT": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+L"
 			},
-			"description": "move current tab to the right"
+			"description": "Move current tab to the right"
 		},
-		"move_left": {
+		"MOVE_LEFT": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+H"
 			},
-			"description": "move current tab to the left"
+			"description": "Move current tab to the left"
 		},
-		"send_tab": {
+		"POP_TAB": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+J"
+			},
+			"description": "Pop current tab to new window"
+		},
+		"PUSH_TAB": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+K"
 			},
-			"description": "move current tab another window"
+			"description": "Push current tab to another window"
 		}
 	}
 }
