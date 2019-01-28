@@ -27,25 +27,29 @@
 	"commands": {
 		"MOVE_RIGHT": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+L"
+				"default": "Ctrl+Shift+L",
+				"mac": "MacCtrl+Shift+L"
 			},
 			"description": "Move current tab to the right"
 		},
 		"MOVE_LEFT": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+H"
+				"default": "Ctrl+Shift+H",
+				"mac": "MacCtrl+Shift+H"
 			},
 			"description": "Move current tab to the left"
 		},
 		"POP_TAB": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+J"
+				"default": "Ctrl+Shift+J",
+				"mac": "MacCtrl+Shift+J"
 			},
 			"description": "Pop current tab to new window"
 		},
 		"PUSH_TAB": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+K"
+				"default": "Ctrl+Shift+K",
+				"mac": "MacCtrl+Shift+K"
 			},
 			"description": "Push current tab to another window"
 		}
