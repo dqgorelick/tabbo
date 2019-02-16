@@ -23,3 +23,21 @@ export const tabs = {
 		return (await browser.tabs.query({active: true, currentWindow: true}))[0];
 	},
 };
+
+
+export enum Browser {
+	OTHER = "OTHER",
+	FIREFOX = "FIREFOX",
+	CHROME = "CHROME",
+};
+
+
+export const checkBrowser = (): Browser => {
+	if (navigator.userAgent.search('Chrome') > -1) {
+		return Browser.CHROME;
+	} else if (navigator.userAgent.search('Firefox') > -1) {
+		return Browser.FIREFOX;
+	}
+
+	return Browser.OTHER;
+};
