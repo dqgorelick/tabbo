@@ -21,7 +21,7 @@
     "@types/firefox-webext-browser": "^58.0.4",
     "@types/jest": "^23.3.13",
     "addons-linter": "^1.6.1",
-    "jest": "^23.6.0",
+    "jest": "^24.1.0",
     "ts-jest": "^23.10.5",
     "ts-loader": "^5.3.3",
     "typescript": "^3.2.4",
