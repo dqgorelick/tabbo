@@ -27,7 +27,7 @@ cp -r dist/scripts/* dist/unpacked/scripts/
 
 echo 'Packaging extension...'
 pushd dist/unpacked
-zip -r -FS ../packed/tabbo.zip *
+zip -r --exclude=*.DS_Store* -FS ../packed/tabbo.zip *
 popd
 
 echo 'Linting...'
