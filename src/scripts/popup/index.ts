@@ -10,8 +10,21 @@ import {browser} from 'webextension-polyfill-ts';
 const port: browser.runtime.Port = browser.runtime.connect();
 
 
-utils.queryOrThrow('#keybinds').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.KEYBINDS);
+utils.queryOrThrow('#keybinds').addEventListener('click', async (): void => {
+	/* FIXME
+	 * This is a pretty hacky way of detecting browser. No other browser other than Firefox
+	 * supports `browser.commands.update` as of 02/15/19 so check if it's available.
+	 * If it isn't, then it's probably Chrome as we only package the extension for Chrome and
+	 * Firefox as of now. Chrome also doesn't support `browser.runtime.getBrowserInfo` so
+	 * we can't use that!
+	 */
+	if (browser.commands.update === null) {
+		// Chrome
+		port.postMessage(tabbo.PopUpCommand.CHROME_KEYBINDS);
+	} else {
+		// Firefox
+		port.postMessage(tabbo.PopUpCommand.KEYBINDS);
+	}
 });
 
 

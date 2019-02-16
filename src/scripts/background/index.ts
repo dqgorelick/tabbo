@@ -33,16 +33,18 @@ browser.commands.onCommand.addListener((cmd: tabbo.Command): void => {
 
 // Handle popup commands
 browser.runtime.onConnect.addListener((port: browser.runtime.Port): void => {
-	port.onMessage.addListener((cmd: tabbo.PopUpCommand): void => {
+	port.onMessage.addListener(async (cmd: tabbo.PopUpCommand): void => {
 		switch (cmd) {
 			case tabbo.PopUpCommand.KEYBINDS:
-				// FIXME add keybind
-				throw new tabbo.CommandNotFoundError(`Command not found: ${cmd}`);
+				await browser.tabs.create({url : '../configuration.html'});
+				break;
+
+			case tabbo.PopUpCommand.CHROME_KEYBINDS:
+				await browser.tabs.create({url : 'chrome://extensions/configureCommands'});
 				break;
 
 			case tabbo.PopUpCommand.INSTRUCTIONS:
-				// FIXME add instructions
-				throw new tabbo.CommandNotFoundError(`Command not found: ${cmd}`);
+				await browser.tabs.create({url : '../instructions.html'});
 				break;
 
 			case tabbo.PopUpCommand.POP_TAB:
