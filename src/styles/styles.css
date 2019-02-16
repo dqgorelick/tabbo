@@ -1,9 +1,3 @@
-@font-face {
-	font-family: Montserrat;
-	src: url("./Montserrat-Regular.ttf");
-}
-
-
 html {
 	background: #000;
 	color: #EEE;
@@ -14,7 +8,7 @@ html {
 }
 
 body {
-	font-family: 'Montserrat', Montserrat, sans-serif;
+	font-family: sans-serif;
 }
 
 .wrapper {
