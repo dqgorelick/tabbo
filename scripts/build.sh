@@ -23,7 +23,12 @@ echo 'Copying manifest...'
 cp -r manifest.json dist/unpacked/
 
 echo 'Copying bundled js files...'
-cp -r build/* dist/unpacked/scripts/
+cp -r dist/scripts/* dist/unpacked/scripts/
 
 echo 'Packaging extension...'
-zip -r -FS dist/packed/tabbo.zip dist/unpacked/*
+pushd dist/unpacked
+zip -r -FS ../packed/tabbo.zip *
+popd
+
+echo 'Linting...'
+npx addons-linter dist/packed/tabbo.zip
