@@ -1,33 +1,37 @@
 {
-  "name": "tabbo",
-  "version": "1.0.0",
-  "description": "Tab management browser extension.",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dqgorelick/tabbo.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dqgorelick/tabbo/issues"
-  },
-  "homepage": "https://github.com/dqgorelick/tabbo#readme",
-  "devDependencies": {
-    "@types/chrome": "0.0.73",
-    "@types/firefox-webext-browser": "^58.0.4",
-    "@types/jest": "^23.3.14",
-    "addons-linter": "^1.6.1",
-    "jest": "^24.1.0",
-    "ts-jest": "^23.10.5",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3",
-    "webextension-polyfill-ts": "^0.8.9",
-    "webpack": "^4.29.4",
-    "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {}
+	"name": "tabbo",
+	"version": "1.0.0",
+	"description": "Tab management browser extension.",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dqgorelick/tabbo.git"
+	},
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/dqgorelick/tabbo/issues"
+	},
+	"homepage": "https://github.com/dqgorelick/tabbo#readme",
+	"devDependencies": {
+		"@types/chrome": "0.0.73",
+		"@types/firefox-webext-browser": "^58.0.4",
+		"@types/jest": "^23.3.14",
+		"addons-linter": "^1.6.1",
+		"jest": "^23.6.0",
+		"jest-puppeteer": "^4.0.0",
+		"jest-webextension-mock": "^3.5.0",
+		"puppeteer": "^1.12.2",
+		"puppeteer-firefox": "^0.4.2",
+		"ts-jest": "^23.10.5",
+		"ts-loader": "^5.3.3",
+		"typescript": "^3.3.3",
+		"webextension-polyfill-ts": "^0.8.9",
+		"webpack": "^4.29.4",
+		"webpack-cli": "^3.2.3"
+	},
+	"dependencies": {}
 }
