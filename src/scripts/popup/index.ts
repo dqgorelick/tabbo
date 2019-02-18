@@ -26,12 +26,12 @@ utils.queryOrThrow('#pop').addEventListener('click', (): void => {
 
 
 utils.queryOrThrow('#send').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.GATHER_WINDOW);
+	port.postMessage(tabbo.PopUpCommand.PUSH_TAB);
 });
 
 
 utils.queryOrThrow('#join').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.PUSH_TAB);
+	port.postMessage(tabbo.PopUpCommand.GATHER_WINDOW);
 });
 
 
