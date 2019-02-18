@@ -130,7 +130,7 @@ export const pushTab = async (): Promise<void> => {
 
 
 export const explodeWindow = async (): Promise<void> => {
-	const windows: browser.windows.Window[] = await browser.getAll({populate: true});
+	const windows: browser.windows.Window[] = await browser.windows.getAll({populate: true});
 
 	windows.forEach((w: browser.windows.Window): void => {
 		if (!w.tabs) {
@@ -158,7 +158,7 @@ export const explodeWindow = async (): Promise<void> => {
 
 
 export const gatherWindow = async (): Promise<void> => {
-	const windows: browser.windows.Window[] = await browser.getAll({populate: true});
+	const windows: browser.windows.Window[] = await browser.windows.getAll({populate: true});
 
 	let isFirstWindow: boolean = true;
 	let firstWindowId: number | undefined;
