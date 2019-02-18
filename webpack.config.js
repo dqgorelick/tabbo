@@ -43,7 +43,8 @@ module.exports = {
 		colors: true,
 		errors: true,
 		errorDetails: true,
-		hash: true
+		hash: true,
+		excludeModules: false,
 	},
 	cache: true
 };
