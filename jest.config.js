@@ -26,6 +26,9 @@ module.exports = {
 	roots: [
 		path.resolve(__dirname, '.'),
 	],
+	setupFiles: [
+		"jest-webextension-mock"
+	],
 	testEnvironment: 'jsdom',
 	testMatch: [
 		'**/?(*.)+(spec|test).ts',
