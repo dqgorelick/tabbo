@@ -1,5 +1,10 @@
 {
 	"manifest_version": 2,
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "tabbo@tabbo.com"
+		}
+	},
 	"browser_action": {
 		"default_icon": "images/tabbo128.png",
 		"default_popup": "popup.html"

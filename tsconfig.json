@@ -15,7 +15,7 @@
 		// "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
 		"sourceMap": true,
 		// "outFile": "./",                       /* Concatenate and emit output to single file. */
-		"outDir": "./build",
+		"outDir": "./dist/scripts",
 		"rootDir": "./",
 		// "composite": true,                     /* Enable project compilation */
 		// "removeComments": true,                /* Do not emit comments to output. */
