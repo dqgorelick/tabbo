@@ -20,18 +20,23 @@
 		"@types/chrome": "0.0.73",
 		"@types/firefox-webext-browser": "^58.0.4",
 		"@types/jest": "^23.3.14",
-		"addons-linter": "^1.6.1",
+		"addons-linter": "^1.22.0",
 		"jest": "^23.6.0",
 		"jest-puppeteer": "^4.0.0",
 		"jest-webextension-mock": "^3.5.0",
+		"parcel-bundler": "^1.11.0",
+		"parcel-plugin-web-extension": "^1.5.1",
 		"puppeteer": "^1.12.2",
 		"puppeteer-firefox": "^0.4.2",
 		"ts-jest": "^23.10.5",
 		"ts-loader": "^5.3.3",
-		"typescript": "^3.3.3",
+		"typescript": "^3.8.3",
 		"webextension-polyfill-ts": "^0.8.9",
-		"webpack": "^4.29.4",
-		"webpack-cli": "^3.2.3"
+		"webpack": "^4.42.1",
+		"webpack-cli": "^3.3.11"
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"browserslist": [
+		"since 2017-06"
+	]
 }
