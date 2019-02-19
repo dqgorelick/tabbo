@@ -23,7 +23,7 @@
 		"experimentalDecorators": true,
 
 		"moduleResolution": "node",
-		"listFiles": true
+		"listFiles": false
 	},
 	"files": [
 		"src/scripts/background/index.ts",
