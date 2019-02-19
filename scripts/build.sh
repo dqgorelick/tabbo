@@ -15,11 +15,9 @@ function textBorder() {
 }
 
 textBorder 'Running webpack...'
-printf '%b\n' "$TEXT_BORDER_RET"
-npx webpack 2>&1 | tee -a $LOG
+npx webpack
 
 if [[ ! -d ./dist ]]; then
-	mkdir -p dist/unpacked/scripts
 	mkdir -p dist/packed
 fi
 
@@ -34,9 +32,6 @@ cp -r src/styles dist/unpacked/
 
 textBorder 'Copying manifest...'
 cp -r manifest.json dist/unpacked/
-
-textBorder 'Copying bundled js files...'
-cp -r dist/scripts/* dist/unpacked/scripts/
 
 textBorder 'Packaging extension...'
 pushd dist/unpacked

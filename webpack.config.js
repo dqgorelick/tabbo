@@ -10,7 +10,7 @@ module.exports = {
 		configuration: path.resolve(__dirname, 'src/scripts/configuration/index.ts'),
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist/scripts'),
+		path: path.resolve(__dirname, 'dist/unpacked/scripts'),
 		filename: '[name].bundle.js',
 	},
 	module: {

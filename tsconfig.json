@@ -10,7 +10,7 @@
 		],
 		"allowJs": true,
 		"checkJs": false,
-		"outDir": "./dist/scripts",
+		"outDir": "./dist/unpacked/scripts",
 		"sourceMap": false,
 		"inlineSources": true,
 		"inlineSourceMap": true,
