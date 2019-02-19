@@ -25,6 +25,10 @@ module.exports = {
 					/\.spec\.ts$/,
 				],
 				loader: 'ts-loader',
+				options: {
+					logInfoToStdOut: true,
+					logLevel: 'info'
+				}
 			}
 		]
 	},
@@ -33,7 +37,12 @@ module.exports = {
 			path.resolve(__dirname, 'node_modules'),
 			path.resolve(__dirname, 'src/scripts')
 		],
-		extensions: ['.js', '.ts']
+		extensions: ['.js', '.ts'],
+		/*
+		 *alias: {
+		 *  'webextension-polyfill-ts': path.resolve(__dirname, 'node_modules/webextension-polyfill-ts')
+		 *}
+		 */
 	},
 	devtool: 'inline-source-map',
 	context: path.resolve(__dirname),
