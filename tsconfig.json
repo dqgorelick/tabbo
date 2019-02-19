@@ -10,23 +10,24 @@
 		],
 		"allowJs": true,
 		"checkJs": false,
-		"sourceMap": true,
 		"outDir": "./dist/scripts",
-		"rootDir": "./",
+		"sourceMap": false,
+		"inlineSources": true,
+		"inlineSourceMap": true,
 
 		"strict": true,
-		"noImplicitAny": true,
-		"strictNullChecks": true,
-		"strictFunctionTypes": true,
-		"strictPropertyInitialization": true,
-		"noImplicitThis": true,
 		"alwaysStrict": true,
-
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
+		"experimentalDecorators": true,
 
-		"esModuleInterop": true,
-		"moduleResolution": "node"
-	}
+		"moduleResolution": "node",
+		"listFiles": true
+	},
+	"files": [
+		"src/scripts/background/index.ts",
+		"src/scripts/popup/index.ts",
+		"src/scripts/manager/index.ts"
+	]
 }
