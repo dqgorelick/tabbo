@@ -15,6 +15,11 @@ export enum Command {
 };
 
 
+export interface PortMessage {
+	action: PopUpCommand;
+};
+
+
 export enum PopUpCommand {
 	CHROME_KEYBINDS = "CHROME_KEYBINDS",
 	KEYBINDS = "KEYBINDS",

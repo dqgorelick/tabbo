@@ -10,7 +10,7 @@ import {browser} from 'webextension-polyfill-ts';
 const port: browser.runtime.Port = browser.runtime.connect();
 
 
-utils.queryOrThrow('#keybinds').addEventListener('click', async (): void => {
+utils.queryOrThrow('#keybinds').addEventListener('click', (): void => {
 	/* FIXME
 	 * Chrome doesn't support `browser.runtime.getBrowserInfo` so we can't use that!
 	 * When it does, change to that.
@@ -18,10 +18,10 @@ utils.queryOrThrow('#keybinds').addEventListener('click', async (): void => {
 	const browserType: utils.Browser = utils.checkBrowser();
 	if (browserType === utils.Browser.CHROME) {
 		// Chrome
-		port.postMessage(tabbo.PopUpCommand.CHROME_KEYBINDS);
+		port.postMessage({action: tabbo.PopUpCommand.CHROME_KEYBINDS});
 	} else if (browserType === utils.Browser.FIREFOX) {
 		// Firefox
-		port.postMessage(tabbo.PopUpCommand.KEYBINDS);
+		port.postMessage({action: tabbo.PopUpCommand.KEYBINDS});
 	} else {
 		// FIXME
 		alert('Invalid browser - only Chrome and Firefox are supoprted');
@@ -30,22 +30,22 @@ utils.queryOrThrow('#keybinds').addEventListener('click', async (): void => {
 
 
 utils.queryOrThrow('#instructions').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.INSTRUCTIONS);
+	port.postMessage({action: tabbo.PopUpCommand.INSTRUCTIONS});
 });
 
 
 utils.queryOrThrow('#pop').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.POP_TAB);
+	port.postMessage({action: tabbo.PopUpCommand.POP_TAB});
 });
 
 
 utils.queryOrThrow('#send').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.PUSH_TAB);
+	port.postMessage({action: tabbo.PopUpCommand.PUSH_TAB});
 });
 
 
 utils.queryOrThrow('#join').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.GATHER_WINDOW);
+	port.postMessage({action: tabbo.PopUpCommand.GATHER_WINDOW});
 });
 
 
@@ -66,6 +66,6 @@ bonusElem.addEventListener('click', (): void => {
 
 	if (bonusClicked > 3) {
 		bonusElem.innerHTML = 'explode!!';
-		port.postMessage(tabbo.PopUpCommand.EXPLODE_WINDOW);
+		port.postMessage({action: tabbo.PopUpCommand.EXPLODE_WINDOW});
 	}
 });

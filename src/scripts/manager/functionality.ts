@@ -19,7 +19,7 @@ export const moveTabToWindow = async (w: browser.windows.Window, t: browser.tabs
 		}
 	);
 
-	browser.tabs.update(t.id, {selected: true, pinned: t.pinned}).catch(
+	browser.tabs.update(t.id, {active: true, pinned: t.pinned}).catch(
 		(e: Error): void => {
 			logging.error(e.message);
 		}

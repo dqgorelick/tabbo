@@ -7,8 +7,9 @@ import {browser} from 'webextension-polyfill-ts';
 
 
 // Handle keyboard shortcuts
-browser.commands.onCommand.addListener((cmd: tabbo.Command): void => {
-	switch (cmd) {
+browser.commands.onCommand.addListener((cmd: string): void => {
+	const cmdEnum: tabbo.Command = tabbo.Command[<keyof typeof tabbo.Command>cmd];
+	switch (cmdEnum) {
 		case tabbo.Command.MOVE_RIGHT:
 			functionality.moveTab(tabbo.Direction.RIGHT);
 			break;
@@ -33,8 +34,8 @@ browser.commands.onCommand.addListener((cmd: tabbo.Command): void => {
 
 // Handle popup commands
 browser.runtime.onConnect.addListener((port: browser.runtime.Port): void => {
-	port.onMessage.addListener(async (cmd: tabbo.PopUpCommand): void => {
-		switch (cmd) {
+	port.onMessage.addListener((cmd: tabbo.PortMessage): void => {
+		switch (cmd.action) {
 			case tabbo.PopUpCommand.KEYBINDS:
 				await browser.tabs.create({url : '../configuration.html'});
 				break;
