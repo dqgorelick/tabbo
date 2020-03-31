@@ -16,7 +16,6 @@ utils.queryOrThrow('#keybinds').addEventListener('click', async (): void => {
 	 * When it does, change to that.
 	 */
 	const browserType: utils.Browser = utils.checkBrowser();
-	alert(browserType);
 	if (browserType === utils.Browser.CHROME) {
 		// Chrome
 		port.postMessage(tabbo.PopUpCommand.CHROME_KEYBINDS);
