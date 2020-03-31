@@ -17,21 +17,26 @@
 	},
 	"homepage": "https://github.com/dqgorelick/tabbo#readme",
 	"devDependencies": {
-		"@types/chrome": "0.0.73",
-		"@types/firefox-webext-browser": "^58.0.4",
+		"@types/chrome": "0.0.103",
+		"@types/firefox-webext-browser": "^70.0.0",
 		"@types/jest": "^23.3.14",
-		"addons-linter": "^1.6.1",
-		"jest": "^23.6.0",
-		"jest-puppeteer": "^4.0.0",
+		"addons-linter": "^1.22.0",
+		"jest": "^25.0.0",
+		"jest-puppeteer": "^4.4.0",
 		"jest-webextension-mock": "^3.5.0",
-		"puppeteer": "^1.12.2",
-		"puppeteer-firefox": "^0.4.2",
-		"ts-jest": "^23.10.5",
-		"ts-loader": "^5.3.3",
-		"typescript": "^3.3.3",
-		"webextension-polyfill-ts": "^0.8.9",
-		"webpack": "^4.29.4",
-		"webpack-cli": "^3.2.3"
+		"parcel-bundler": "^1.12.4",
+		"parcel-plugin-web-extension": "^1.6.1",
+		"puppeteer": "^2.0.0",
+		"puppeteer-firefox": "^0.5.0",
+		"ts-jest": "^25.0.0",
+		"ts-loader": "^6.0.0",
+		"typescript": "^3.8.3",
+		"webextension-polyfill-ts": "^0.14.0",
+		"webpack": "^4.42.1",
+		"webpack-cli": "^3.3.11"
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"browserslist": [
+		"since 2017-06"
+	]
 }

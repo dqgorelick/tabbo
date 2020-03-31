@@ -45,6 +45,7 @@ export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
 		newIndex = (currentIndex === upperBound) ? lowerBound : currentIndex + 1;
 	}
 
+
 	try {
 		await browser.tabs.move(tab.id, {index: newIndex});
 	} catch (e) {
@@ -95,7 +96,7 @@ export const pushTab = async (): Promise<void> => {
 			}
 		);
 
-		browser.tabs.update(tab.id, {selected: true, pinned: tab.pinned}).catch(
+		browser.tabs.update(tab.id, {active: true, pinned: tab.pinned}).catch(
 			(e: Error): void => {
 				logging.error(e.message);
 			}
