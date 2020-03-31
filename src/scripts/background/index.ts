@@ -2,6 +2,7 @@
 
 import * as tabbo from '../tabbo';
 import * as functionality from './functionality';
+import * as logging from '../logging';
 
 import {browser} from 'webextension-polyfill-ts';
 
@@ -34,7 +35,7 @@ browser.commands.onCommand.addListener((cmd: string): void => {
 
 // Handle popup commands
 browser.runtime.onConnect.addListener((port: browser.runtime.Port): void => {
-	port.onMessage.addListener((cmd: tabbo.PortMessage): void => {
+	port.onMessage.addListener(async (cmd: tabbo.PortMessage): Promise<void> => {
 		switch (cmd.action) {
 			case tabbo.PopUpCommand.KEYBINDS:
 				await browser.tabs.create({url : '../configuration.html'});
