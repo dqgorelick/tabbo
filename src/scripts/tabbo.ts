@@ -16,6 +16,7 @@ export enum Command {
 
 
 export enum PopUpCommand {
+	CHROME_KEYBINDS = "CHROME_KEYBINDS",
 	KEYBINDS = "KEYBINDS",
 	INSTRUCTIONS = "INSTRUCTIONS",
 	POP_TAB = "POP_TAB",

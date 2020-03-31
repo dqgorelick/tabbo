@@ -10,8 +10,22 @@ import {browser} from 'webextension-polyfill-ts';
 const port: browser.runtime.Port = browser.runtime.connect();
 
 
-utils.queryOrThrow('#keybinds').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.KEYBINDS);
+utils.queryOrThrow('#keybinds').addEventListener('click', async (): void => {
+	/* FIXME
+	 * Chrome doesn't support `browser.runtime.getBrowserInfo` so we can't use that!
+	 * When it does, change to that.
+	 */
+	const browserType: utils.Browser = utils.checkBrowser();
+	if (browserType === utils.Browser.CHROME) {
+		// Chrome
+		port.postMessage(tabbo.PopUpCommand.CHROME_KEYBINDS);
+	} else if (browserType === utils.Browser.FIREFOX) {
+		// Firefox
+		port.postMessage(tabbo.PopUpCommand.KEYBINDS);
+	} else {
+		// FIXME
+		alert('Invalid browser - only Chrome and Firefox are supoprted');
+	}
 });
 
 
