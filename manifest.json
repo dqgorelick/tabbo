@@ -27,7 +27,8 @@
 	},
 	"permissions": [
 		"tabs",
-		"activeTab"
+		"activeTab",
+		"<all_urls>"
 	],
 	"commands": {
 		"MOVE_RIGHT": {
