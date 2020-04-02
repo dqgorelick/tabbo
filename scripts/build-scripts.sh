@@ -27,15 +27,3 @@ for ENTRYPOINT in ${ENTRYPOINTS[@]}; do
 	borderPrint "Running parcel on ${ENTRYPOINT}..."
 	parcelBuild $ENTRYPOINT
 done
-
-borderPrint "Copying HTML"
-copyToUnpacked src/*.html
-
-borderPrint "Copying images"
-copyToUnpacked src/images
-
-borderPrint "Copying CSS"
-copyToUnpacked src/styles
-
-borderPrint "Copying manifest"
-copyToUnpacked manifest.json
