@@ -22,6 +22,14 @@ export const main = async (sendTabID: number): Promise<void> => {
 		await browser.windows.getAll({populate: true})
 	).filter((w: browser.windows.Window): boolean => {
 		return current.id !== w.id;
+	}).sort((a: browser.windows.Window, b: browser.windows.Window): boolean => {
+		if (a.id < b.id) {
+			return -1;
+		} else if (a.id > b.id) {
+			return 1;
+		}
+
+		return 0;
 	});
 
 	const openWindowsElement: HTMLElement = utils.queryOrThrow('#open-windows');
