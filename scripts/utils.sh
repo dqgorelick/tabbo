@@ -15,7 +15,7 @@ function borderPrint() {
 function copyToUnpacked() {
 	local SRC=$1
 
-	cp -u -r "$SRC" dist/unpacked/
+	cp -r "$SRC" dist/unpacked/
 }
 
 function inArray() {
