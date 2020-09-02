@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
-./scripts/build-parcel.sh
-./scripts/build-css.sh
+./scripts/build-scripts.sh
+./scripts/build-styles.sh
 ./scripts/build-html.sh
-./scripts/build-image.sh
+./scripts/build-images.sh
 ./scripts/build-manifest.sh
 
