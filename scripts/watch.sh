@@ -2,7 +2,7 @@
 
 set -f
 
-watchman --version 2&>1 > /dev/null
+watchman --version 2>&1 > /dev/null
 
 if (( $? != 0 )); then
 	printf "Requires watchman for watching - please install it and try again\n"
@@ -82,6 +82,22 @@ watchman --sockname=$SOCKFILE -j <<-EOF
 		"name": "scripts-popup",
 		"expression": ["match", "src/scripts/popup/*.ts", "wholename"],
 		"command": ["./scripts/build-scripts.sh", "popup"],
+		"append_files": false,
+		"stdin": ["name", "exists", "new", "size", "mode"],
+		"stdout": ">>$LOGFILE",
+		"stderr": ">>$LOGFILE"
+	}
+]
+EOF
+
+watchman --sockname=$SOCKFILE -j <<-EOF
+[
+	"trigger",
+	"./",
+	{
+		"name": "scripts-configuration",
+		"expression": ["match", "src/scripts/configuration/*.ts", "wholename"],
+		"command": ["./scripts/build-scripts.sh", "configuration"],
 		"append_files": false,
 		"stdin": ["name", "exists", "new", "size", "mode"],
 		"stdout": ">>$LOGFILE",

@@ -13,7 +13,7 @@ function parcelBuild() {
 		"src/scripts/${NAME}/index.ts"
 }
 
-ENTRYPOINTS=('background' 'popup' 'manager')
+ENTRYPOINTS=('background' 'popup' 'manager' 'configuration')
 
 if [[ "$1" != "" ]]; then
 	inArray "${ENTRYPOINTS[@]}" $1
