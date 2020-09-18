@@ -35,7 +35,9 @@
 		"webpack": "^4.44.2",
 		"webpack-cli": "^3.3.12"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"hybrids": "^4.3.1"
+	},
 	"browserslist": [
 		"since 2017-06"
 	]

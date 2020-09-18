@@ -31,6 +31,23 @@ watchman --sockname=$SOCKFILE -j <<-EOF
 	"trigger",
 	"./",
 	{
+		"name": "components",
+		"expression": ["match", "src/components/*.ts", "wholename"],
+		"command": ["./scripts/build-components.sh"],
+		"append_files": false,
+		"stdin": ["name", "exists", "new", "size", "mode"],
+		"stdout": ">>$LOGFILE",
+		"stderr": ">>$LOGFILE"
+	}
+]
+EOF
+
+
+watchman --sockname=$SOCKFILE -j <<-EOF
+[
+	"trigger",
+	"./",
+	{
 		"name": "scripts",
 		"expression": ["match", "src/scripts/*.ts", "wholename"],
 		"command": ["./scripts/build-scripts.sh"],
