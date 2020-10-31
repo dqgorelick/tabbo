@@ -14,4 +14,4 @@ function parcelBuild() {
 }
 
 borderPrint "Running parcel on components..."
-parcelBuild 'test'
+parcelBuild 'manager'

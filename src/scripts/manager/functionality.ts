@@ -1,6 +1,7 @@
 'use strict';
 
 import * as utils from '../utils';
+import { WindowCardElem } from '../../components/window-card.ts'
 
 import {browser} from 'webextension-polyfill-ts';
 
@@ -53,20 +54,18 @@ export const main = async (sendTabID: number): Promise<void> => {
 		const index = (i + 1).toString();
 
 		if (w.tabs) {
-			const div: HTMLDivElement = document.createElement('div');
-			div.className = 'screenshot';
-			div.style.backgroundImage = `url(${screenshots[i]})`;
-			div.innerHTML = `<div class="title-bar"> <img src="${w.tabs[0].favIconUrl}"/>
-				<div class="screen-title">${w.tabs[0].title}</div></div>
-				<div class="screen-index">${index}</div>
-				<div class="tab-count">${w.tabs.length + (w.tabs.length === 1 ? " tab" : " tabs")}
-				</div>`;
+			const card: HTMLElement = document.createElement('window-card');
+			card.setAttribute('index', index);
+			card.setAttribute('screenshot', screenshots[i]);
+			card.setAttribute('favicon-url', w.tabs[0].favIconUrl);
+			card.setAttribute('title', w.tabs[0].title);
+			card.setAttribute('tab-count', w.tabs.length);
 
-			div.addEventListener('click', async (): Promise<void> => {
+			card.addEventListener('click', async (): Promise<void> => {
 				await moveTabToWindow(w, t);
 			});
 
-			openWindowsElement.appendChild(div);
+			openWindowsElement.appendChild(card);
 		}
 	});
 

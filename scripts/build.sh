@@ -5,4 +5,4 @@
 ./scripts/build-html.sh
 ./scripts/build-images.sh
 ./scripts/build-manifest.sh
-
+./scripts/build-components.sh
