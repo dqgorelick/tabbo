@@ -5,8 +5,17 @@ source scripts/utils.sh
 function parcelBuild() {
 	local NAME=$1
 
+	# parcel 1
+	#npx parcel build \
+		#--detailed-report \
+		#--out-dir 'dist/unpacked/scripts' \
+		#--out-file "${NAME}.bundle.js" \
+		#--public-url './' \
+		#"src/scripts/${NAME}/index.ts"
+
+	# parcel 2
 	npx parcel build \
-		--detailed-report \
+		--detailed-report 100 \
 		--target "${NAME}" \
 		"src/scripts/${NAME}/index.ts"
 }

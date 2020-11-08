@@ -11,9 +11,7 @@
 		"allowJs": false,
 		"checkJs": false,
 		"outDir": "./dist/unpacked/scripts",
-		"sourceMap": false,
-		"inlineSources": true,
-		"inlineSourceMap": true,
+		"sourceMap": true,
 
 		"strict": true,
 		"alwaysStrict": true,
@@ -24,5 +22,6 @@
 
 		"moduleResolution": "node",
 		"listFiles": false
-	}
+	},
+	"include": ["src/**/*.ts"]
 }
