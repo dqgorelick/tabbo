@@ -2,7 +2,6 @@
 	"name": "tabbo",
 	"version": "1.0.0",
 	"description": "Tab management browser extension.",
-	"main": "index.js",
 	"scripts": {
 		"test": "jest"
 	},
@@ -40,5 +39,51 @@
 	},
 	"browserslist": [
 		"since 2017-06"
-	]
+	],
+	"background": "dist/unpacked/scripts/background.bundle.js",
+	"configuration": "dist/unpacked/scripts/configuration.bundle.js",
+	"manager": "dist/unpacked/scripts/manager.bundle.js",
+	"popup": "dist/unpacked/scripts/popup.bundle.js",
+	"targets": {
+		"background": {
+			"context": "browser",
+			"includeNodeModules": true,
+			"isLibrary": false,
+			"minify": true,
+			"outputFormat": "global",
+			"publicUrl": "./",
+			"scopeHoist": false,
+			"sourceMap": true
+		},
+		"configuration": {
+			"context": "browser",
+			"includeNodeModules": true,
+			"isLibrary": false,
+			"minify": true,
+			"outputFormat": "global",
+			"publicUrl": "./",
+			"scopeHoist": false,
+			"sourceMap": true
+		},
+		"manager": {
+			"context": "browser",
+			"includeNodeModules": true,
+			"isLibrary": false,
+			"minify": true,
+			"outputFormat": "global",
+			"publicUrl": "./",
+			"scopeHoist": false,
+			"sourceMap": true
+		},
+		"popup": {
+			"context": "browser",
+			"includeNodeModules": true,
+			"isLibrary": false,
+			"minify": true,
+			"outputFormat": "global",
+			"publicUrl": "./",
+			"scopeHoist": false,
+			"sourceMap": true
+		}
+	}
 }

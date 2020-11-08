@@ -7,9 +7,7 @@ function parcelBuild() {
 
 	npx parcel build \
 		--detailed-report \
-		--out-dir 'dist/unpacked/scripts' \
-		--out-file "${NAME}.bundle.js" \
-		--public-url './' \
+		--target "${NAME}" \
 		"src/scripts/${NAME}/index.ts"
 }
 

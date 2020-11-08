@@ -2,6 +2,7 @@ node_modules/
 dist/
 build/
 coverage/
+.parcel-cache/
 
 .DS_Store
 .tern-port
