@@ -8,7 +8,7 @@
 			"DOM.Iterable",
 			"ScriptHost"
 		],
-		"allowJs": true,
+		"allowJs": false,
 		"checkJs": false,
 		"outDir": "./dist/unpacked/scripts",
 		"sourceMap": false,
@@ -24,10 +24,5 @@
 
 		"moduleResolution": "node",
 		"listFiles": false
-	},
-	"files": [
-		"src/scripts/background/index.ts",
-		"src/scripts/popup/index.ts",
-		"src/scripts/manager/index.ts"
-	]
+	}
 }
