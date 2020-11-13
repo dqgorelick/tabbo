@@ -23,7 +23,7 @@ export default {
 	props: {
 		index: {
 			type: Number,
-			required: true,
+			required: false,
 		},
 		browserWindow: {
 			type: browser.windows.Window,
@@ -32,13 +32,12 @@ export default {
 	},
 
 	setup: (props) => {
-		console.log(props);
 		const tab = computed(() => {
-				return props.browserWindow.tabs.find(t => t.active) ?? props.browserWindow.tabs[0];
+			return props.browserWindow.tabs.find(t => t.active) ?? props.browserWindow.tabs[0] ?? {};
 		});
 
 		const screenshot = asyncComputed(async () => {
-			if (props.browserWindow.id !== 0) {
+			if (props.browserWindow.id) {
 				return await browser.tabs.captureVisibleTab(props.browserWindow.id, {
 					quality: 30,
 				});
@@ -59,3 +58,6 @@ export default {
 	}
 };
 </script>
+
+<style lang="scss" scoped>
+</style>

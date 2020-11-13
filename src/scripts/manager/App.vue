@@ -1,6 +1,6 @@
 <template>
 	<div id="current-tab-wrapper">
-		<window-card id="current-tab" :index="0" :browser-window="currentWindow"></window-card>
+		<window-card id="current-tab" :browser-window="browserWindows.current"></window-card>
 
 		<div id="cancel">
 			close dashboard
@@ -15,7 +15,7 @@
 		<p id="tabbo-title">Tabbo Dashboard</p>
 		<p id="keybinds">Customize hotkeys</p>
 		<div id="open-windows">
-			<window-card v-for="(window, index) in windows" :index="index" :browser-window="window"></window-card>
+			<window-card v-for="(window, index) in browserWindows.rest" :index="index" :browser-window="window"></window-card>
 		</div>
 		<div id="hackny"><a target="_blank" href="http://hackny.org/"><img src="https://pbs.twimg.com/profile_images/798720047/hackny_logo_square_400x400.png"></a></div>
 		<div id="github"><a target="_blank" href="https://github.com/hackny2016labs/tabbo"><p>Github</p></a></div>
@@ -35,20 +35,20 @@ export default {
 	},
 
 	setup: () => {
-		const currentWindow = reactive({
-			tabs: [{}],
-			id: 0,
+		const browserWindows = reactive({
+			current: {
+				tabs: []
+			},
+			rest: [],
 		});
-		const windows = ref([]);
 
-		browser.windows.getCurrent({populate: true}).then((val) => {
-			currentWindow.tabs = val.tabs;
-			currentWindow.id = val.id;
-		}).then(() => {
-			return browser.windows.getAll({populate: true});
-		}).then((val) => {
-			windows.value = val.filter((w: browser.windows.Window): boolean => {
-				return currentWindow.id !== w.id;
+		browser.windows.getAll({populate: true}).then((val) => {
+			browserWindows.current = val.find((w) => {
+				return w.focused;
+			});
+
+			browserWindows.rest = val.filter((w: browser.windows.Window): boolean => {
+				return !w.focused;
 			}).sort((a: browser.windows.Window, b: browser.windows.Window): number => {
 				if (a.id < b.id) {
 					return -1;
@@ -61,8 +61,7 @@ export default {
 		});
 
 		return {
-			windows,
-			currentWindow,
+			browserWindows,
 		};
 	},
 };
