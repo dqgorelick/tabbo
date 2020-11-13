@@ -17,10 +17,10 @@
 	"homepage": "https://github.com/dqgorelick/tabbo#readme",
 	"devDependencies": {
 		"@types/chrome": "0.0.x",
-		"@types/firefox-webext-browser": "78.x.x",
+		"@types/firefox-webext-browser": "82.x.x",
 		"@types/jest": "26.x.x",
 		"@vue/compiler-sfc": "^3.0.2",
-		"addons-linter": "^1.26.0",
+		"addons-linter": "2.x.x",
 		"jest": "26.x.x",
 		"jest-puppeteer": "^4.4.0",
 		"jest-webextension-mock": "^3.6.1",
