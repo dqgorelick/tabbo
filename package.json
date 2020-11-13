@@ -37,6 +37,7 @@
 		"webpack-cli": "^3.3.12"
 	},
 	"dependencies": {
+		"milligram": "^1.4.1",
 		"vue": "^3.0.2"
 	},
 	"browserslist": [
