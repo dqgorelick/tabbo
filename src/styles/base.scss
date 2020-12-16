@@ -1,13 +1,15 @@
+// figma: https://www.figma.com/file/uKCEBJneFOg1juhdmC4kg8/Tabbo
+
 // colors
 $color-accent: #4376E6;
 
 // dark
-$color-dark-text: #000000;
+$color-dark-text: #EAEAEA;
 $color-dark-primary: #393B3D;
 $color-dark-secondary: #4C4C4C;
 
 // light
-$color-light-text: #EAEAEA;
+$color-light-text: #000000;
 $color-light-primary: #ECF0F1;
 $color-light-secondary: #ECF0F1;
 
@@ -17,7 +19,7 @@ $color-light-secondary: #ECF0F1;
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url('./src/assets/PT_Sans/PTSans-Bold.ttf') format('truetype');
+	src: url('../assets/PT_Sans/PTSans-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -25,7 +27,7 @@ $color-light-secondary: #ECF0F1;
 	font-style: italic;
 	font-weight: 700;
 	font-display: swap;
-	src: url('./src/assets/PT_Sans/PTSans-BoldItalic.ttf') format('truetype');
+	src: url('../assets/PT_Sans/PTSans-BoldItalic.ttf') format('truetype');
 }
 
 @font-face {
@@ -33,7 +35,7 @@ $color-light-secondary: #ECF0F1;
 	font-style: italic;
 	font-weight: 400;
 	font-display: swap;
-	src: url('./src/assets/PT_Sans/PTSans-Italic.ttf') format('truetype');
+	src: url('../assets/PT_Sans/PTSans-Italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -41,10 +43,21 @@ $color-light-secondary: #ECF0F1;
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url('./src/assets/PT_Sans/PTSans-Regular.ttf') format('truetype');
+	src: url('../assets/PT_Sans/PTSans-Regular.ttf') format('truetype');
 }
 
 $font: 'PT sans';
 @mixin set-font() {
 	font-family: $font, sans-serif;
+}
+
+
+// misc
+@mixin reset-whitespace() {
+	margin: 0px;
+	padding: 0px;
+}
+
+@mixin reset($prop) {
+	#{prop}: 0;
 }
