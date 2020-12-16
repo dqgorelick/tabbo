@@ -1,0 +1,50 @@
+// colors
+$color-accent: #4376E6;
+
+// dark
+$color-dark-text: #000000;
+$color-dark-primary: #393B3D;
+$color-dark-secondary: #4C4C4C;
+
+// light
+$color-light-text: #EAEAEA;
+$color-light-primary: #ECF0F1;
+$color-light-secondary: #ECF0F1;
+
+// fonts
+@font-face {
+	font-family: 'PT Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('./src/assets/PT_Sans/PTSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'PT Sans';
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+	src: url('./src/assets/PT_Sans/PTSans-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'PT Sans';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./src/assets/PT_Sans/PTSans-Italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'PT Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./src/assets/PT_Sans/PTSans-Regular.ttf') format('truetype');
+}
+
+$font: 'PT sans';
+@mixin set-font() {
+	font-family: $font, sans-serif;
+}
