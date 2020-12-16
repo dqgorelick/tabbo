@@ -1,0 +1,39 @@
+@use 'base';
+
+html {
+	@include base.set-font();
+
+	text-align: center;
+}
+
+body {
+	@include base.reset-whitespace();
+
+	width: 150px;
+	background-color: base.$color-dark-primary;
+}
+
+h1 {
+	color: base.$color-accent;
+	margin: 5px auto;
+	padding: 0px;
+	font-size: 24px;
+}
+
+button {
+	color: base.$color-dark-text;
+	background-color: base.$color-dark-primary;
+	display: block;
+	border: 0;
+	height: 32px;
+	width: 100%;
+	font-size: 14px;
+	padding: 0;
+
+	transition-duration: 0.2s;
+	transition-property: background-color;
+
+	&:hover {
+		background-color: base.$color-dark-secondary;
+	}
+}
