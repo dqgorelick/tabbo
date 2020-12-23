@@ -1,23 +1,11 @@
 @use 'base';
-
-html {
-	@include base.set-font();
-
-	text-align: center;
-}
-
-body {
-	@include base.reset-whitespace();
-
-	width: 150px;
-	background-color: base.$color-dark-primary;
-}
+@use 'theme';
 
 h1 {
 	color: base.$color-accent;
 	margin: 5px auto;
 	padding: 0px;
-	font-size: 24px;
+	font-size: base.$font-size-primary;
 }
 
 button {
@@ -27,13 +15,9 @@ button {
 	border: 0;
 	height: 32px;
 	width: 100%;
-	font-size: 14px;
+	font-size: base.$font-size-normal;
 	padding: 0;
+	vertical-align: middle;
 
-	transition-duration: 0.2s;
-	transition-property: background-color;
-
-	&:hover {
-		background-color: base.$color-dark-secondary;
-	}
+	@include base.hover-transition(background-color, base.$color-dark-secondary);
 }

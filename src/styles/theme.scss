@@ -1,0 +1,14 @@
+@use 'base';
+
+html {
+	@include base.set-font();
+
+	text-align: center;
+}
+
+body {
+	@include base.reset-whitespace();
+
+	width: 150px;
+	background-color: base.$color-dark-primary;
+}

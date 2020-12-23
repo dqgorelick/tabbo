@@ -14,13 +14,16 @@ function parcelBuild() {
 		"src/${NAME}.html"
 }
 
-ENTRYPOINTS=('popup')
+ENTRYPOINTS=('popup' 'manager')
 
 if [[ "$1" != "" ]]; then
 	inArray "${ENTRYPOINTS[@]}" $1
 
 	if (( $? == 0 )); then
 		ENTRYPOINTS=($1)
+	else
+		echo 'Invalid entrypoint'
+		exit 1
 	fi
 fi
 
