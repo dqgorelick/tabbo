@@ -29,7 +29,7 @@ body {
 		a {
 			text-decoration: none;
 			color: base.$color-dark-text;
-			font-size: base.$font-size-secondary;
+			font-size: base.$font-size-tertiary;
 			margin: 0 5px;
 
 			@include base.hover-transition(color, base.$color-dark-text-hover);

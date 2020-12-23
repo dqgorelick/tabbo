@@ -13,13 +13,16 @@ function parcelBuild() {
 		"src/scripts/${NAME}/index.ts"
 }
 
-ENTRYPOINTS=('background' 'popup' 'manager' 'configuration')
+ENTRYPOINTS=('background')
 
 if [[ "$1" != "" ]]; then
 	inArray "${ENTRYPOINTS[@]}" $1
 
 	if (( $? == 0 )); then
 		ENTRYPOINTS=($1)
+	else
+		echo 'Invalid entrypoint'
+		exit 1
 	fi
 fi
 
