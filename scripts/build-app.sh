@@ -14,6 +14,7 @@ function parcelBuild() {
 		"src/${NAME}.html"
 }
 
+# manager automatically builds help and configuration as well
 ENTRYPOINTS=('popup' 'manager')
 
 if [[ "$1" != "" ]]; then

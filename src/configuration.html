@@ -5,28 +5,22 @@
 
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/configuration.scss">
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
-					<h1> Tabbo Configuration </h1>
-				</div>
-			</div>
+		<nav id="header">
+			<h1>Tabbo</h1>
 
-			<div class="row" id="commands">
-			</div>
+			<div class="spanner"></div>
 
-			<div class="row">
-				<div class="col">
-					<button id="save" class="btn btn-primary">Save</button>
-				</div>
+			<div id="nav-right">
+				<a href="https://github.com/dqgorelick/tabbo" target="_blank">Github</a>
+				<a href="./configuration.html" target="_blank">Settings</a>
+				<a href="./help.html" target="_blank">Help</a>
 			</div>
-		</div>
+		</nav>
 
-		<script src="scripts/configuration.bundle.js"></script>
+		<script src="scripts/configuration/index.ts"></script>
 	</body>
 </html>
