@@ -26,16 +26,4 @@ utils.queryOrThrow('body').addEventListener(
 );
 
 
-utils.queryOrThrow('#cancel').addEventListener('click', (): void => {
-	utils.tabs.getCurrent().then((t: browser.tabs.Tab): void => {
-		browser.tabs.remove(t.id);
-	});
-});
-
-
 const port = browser.runtime.connect();
-
-
-utils.queryOrThrow('#keybinds').addEventListener('click', (): void => {
-	port.postMessage(tabbo.PopUpCommand.KEYBINDS);
-});

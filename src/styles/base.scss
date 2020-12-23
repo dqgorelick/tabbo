@@ -1,17 +1,34 @@
+@use 'sass:color';
 // figma: https://www.figma.com/file/uKCEBJneFOg1juhdmC4kg8/Tabbo
+
+// misc
+$transition-hover-duration: 0.2s;
+$hover-change-amount: 15%;
+
+$radius: 5px;
 
 // colors
 $color-accent: #4376E6;
+$color-accent-hover: color.scale($color-accent, $lightness: -$hover-change-amount);
 
 // dark
 $color-dark-text: #EAEAEA;
+$color-dark-text-hover: color.scale($color-dark-text, $lightness: -$hover-change-amount);
 $color-dark-primary: #393B3D;
 $color-dark-secondary: #4C4C4C;
+$color-dark-background: #000000;
 
 // light
 $color-light-text: #000000;
+$color-light-text-hover: color.scale($color-light-text, $lightness: $hover-change-amount);
 $color-light-primary: #ECF0F1;
 $color-light-secondary: #ECF0F1;
+$color-light-background: #FFFFFF;
+
+// fonts
+$font-size-primary: 26px;
+$font-size-secondary: 22px;
+$font-size-tertiary: 18px;
 
 // fonts
 @font-face {
@@ -59,5 +76,18 @@ $font: 'PT sans';
 }
 
 @mixin reset($prop) {
-	#{prop}: 0;
+	#{$prop}: 0;
+}
+
+@mixin hover-transition($prop, $value) {
+	transition: $transition-hover-duration;
+	transition-property: $prop;
+
+	&:hover {
+		#{$prop}: $value;
+	}
+}
+
+.spanner {
+	flex: 1;
 }

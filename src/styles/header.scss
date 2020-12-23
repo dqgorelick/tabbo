@@ -1,0 +1,38 @@
+@use 'base';
+@use 'theme';
+
+body {
+	background-color: base.$color-dark-background;
+}
+
+#header {
+	width: 100vw;
+	height: 50px;
+
+	background-color: base.$color-dark-primary;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	h1 {
+		color: base.$color-accent;
+		font-size: base.$font-size-primary;
+		margin: auto 15px;
+		display: block;
+	}
+
+	#nav-right {
+		margin: auto 15px;
+
+		a {
+			text-decoration: none;
+			color: base.$color-dark-text;
+			font-size: base.$font-size-secondary;
+			margin: 0 5px;
+
+			@include base.hover-transition(color, base.$color-dark-text-hover);
+		}
+	}
+}

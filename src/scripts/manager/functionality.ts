@@ -4,6 +4,46 @@ import * as utils from '../utils';
 
 import {browser} from 'webextension-polyfill-ts';
 
+const buildCurrentTabPreview = (t: browser.tabs.Tab, screenshot: string): HTMLElement => {
+	const div: HTMLDivElement = document.createElement('div');
+	div.id = 'current-tab';
+	div.className = 'preview';
+	div.style.backgroundImage = `url(${screenshot})`;
+	div.innerHTML = `
+	<div class="preview-top"></div>
+	<div class="preview-bottom">
+	<img src="${t.favIconUrl}"/>
+		<p>
+			${t.title}
+		</p>
+	</div>
+	`;
+
+	return div;
+};
+
+
+const buildWindowPreview = (w: browser.windows.Window, screenshot: string, index: number): HTMLElement => {
+	const div: HTMLDivElement = document.createElement('div');
+	div.className = 'preview window';
+	div.style.backgroundImage = `url(${screenshot})`;
+	div.innerHTML = `
+	<div class="preview-top">
+		<h3>${index}</h3>
+	</div>
+	<div class="preview-bottom">
+		<img src="${w.tabs[0].favIconUrl}"/>
+		<p>
+			${w.tabs[0].title}
+		</p>
+		<div class="spanner"></div>
+		<p>${w.tabs.length + (w.tabs.length === 1 ? " tab" : " tabs")}</p>
+	</div>
+	`;
+
+	return div;
+};
+
 
 export const moveTabToWindow = async (w: browser.windows.Window, t: browser.tabs.Tab): Promise<void> => {
 	if (w.id === undefined || t.id === undefined) {
@@ -32,41 +72,38 @@ export const main = async (sendTabID: number): Promise<void> => {
 		return 0;
 	});
 
-	const openWindowsElement: HTMLElement = utils.queryOrThrow('#open-windows');
 	const t: browser.tabs.Tab = await browser.tabs.get(sendTabID);
-
 	if (windows.length === 1) {
-		const h1: HTMLElement = document.createElement('h1');
-		h1.innerText = 'No other open windows';
-
-		openWindowsElement.appendChild(h1);
+		alert('No other open window is available');
+		let current = await utils.tabs.getCurrent();
+		await browser.tabs.remove(current.id);
+		return;
 	}
 
-	const screenshots: string[] = await Promise.all(windows.map((w: browser.windows.Window): Promise<string> => {
-		return browser.tabs.captureVisibleTab(w.id, {
-			format: 'jpeg',
-			quality: 30,
-		});
-	}));
+	const screenshots: string[] = await Promise.all(
+		windows.map((w: browser.windows.Window): Promise<string> => {
+			return browser.tabs.captureVisibleTab(
+				w.id,
+				{
+					format: 'jpeg',
+					quality: 30
+				}
+			);
+		})
+	);
 
+	const windowsElem: HTMLElement = utils.queryOrThrow('#windows');
 	windows.forEach(async (w: browser.windows.Window, i: number): Promise<void> => {
 		const index = (i + 1).toString();
 
 		if (w.tabs) {
-			const div: HTMLDivElement = document.createElement('div');
-			div.className = 'screenshot';
-			div.style.backgroundImage = `url(${screenshots[i]})`;
-			div.innerHTML = `<div class="title-bar"> <img src="${w.tabs[0].favIconUrl}"/>
-				<div class="screen-title">${w.tabs[0].title}</div></div>
-				<div class="screen-index">${index}</div>
-				<div class="tab-count">${w.tabs.length + (w.tabs.length === 1 ? " tab" : " tabs")}
-				</div>`;
+			const div: HTMLDivElement = buildWindowPreview(w, screenshots[i], index);
 
 			div.addEventListener('click', async (): Promise<void> => {
 				await moveTabToWindow(w, t);
 			});
 
-			openWindowsElement.appendChild(div);
+			windowsElem.appendChild(div);
 		}
 	});
 
@@ -86,6 +123,14 @@ export const main = async (sendTabID: number): Promise<void> => {
 		}
 	);
 
-	utils.queryOrThrow('#current-tab').innerHTML = `<div class="title-bar"><img src="${t.favIconUrl}"/>` +
-		`<div class="screen-title">${t.title}</div></div>`;
+	/*
+	 *let currentScreenshot = await browser.tabs.captureVisibleTab(
+	 *      current.id,
+	 *      {
+	 *        format: 'jpeg',
+	 *        quality: 30
+	 *      }
+	 *    );
+	 */
+	utils.queryOrThrow('#current-tab-container').prepend(buildCurrentTabPreview(t, ''));
 };
