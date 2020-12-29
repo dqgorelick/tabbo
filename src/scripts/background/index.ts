@@ -45,8 +45,8 @@ browser.runtime.onConnect.addListener((port: browser.runtime.Port): void => {
 				await browser.tabs.create({url : 'chrome://extensions/configureCommands'});
 				break;
 
-			case tabbo.PopUpCommand.INSTRUCTIONS:
-				await browser.tabs.create({url : '../instructions.html'});
+			case tabbo.PopUpCommand.HELP:
+				await browser.tabs.create({url : '../help.html'});
 				break;
 
 			case tabbo.PopUpCommand.POP_TAB:
