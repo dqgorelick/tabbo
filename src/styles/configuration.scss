@@ -1,0 +1,109 @@
+@use 'base';
+@use 'theme';
+@use 'header';
+
+body {
+	@include base.set-font();
+	//height: 100vh;
+	width: 100%;
+	color: base.$color-dark-text;
+	text-align: left;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	margin: 50px 150px;
+	padding: 0;
+
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+}
+
+#viewer {
+	padding: 0 10px;
+	width: 50%;
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-content: center;
+
+	img {
+		background-color: base.$color-dark-secondary;
+		height: 75%;
+	}
+}
+
+#configurations {
+	padding: 0 10px;
+	overflow-y: scroll;
+	width: 50%;
+}
+
+.configuration {
+	margin: 25px 0;
+	padding: 10px;
+	cursor: pointer;
+
+	@include base.hover-transition(background-color, base.$color-dark-primary);
+
+	&.active {
+		cursor: default;
+		background-color: base.$color-dark-primary;
+	}
+}
+
+.configuration-name {
+	display: block;
+	font-weight: bold;
+	font-size: base.$font-size-secondary;
+	margin: 10px 0;
+}
+
+.configuration-input {
+	display: block;
+	width: 50%;
+	font-size: base.$font-size-tertiary;
+	padding: 10px;
+	border: none;
+	border-radius: base.$radius;
+}
+
+.configuration-description {
+	font-size: base.$font-size-tertiary;
+	margin: 10px 0;
+}
+
+#save-container {
+	margin: 50px auto;
+}
+
+#save {
+	background-color: transparent;
+	color: base.$color-accent;
+	padding: 10px 30px;
+	font-size: base.$font-size-tertiary;
+	text-transform: uppercase;
+	border: 2px solid base.$color-accent;
+	border-radius: base.$radius;
+	transition-property: color background-color;
+
+	transition: base.$transition-hover-duration;
+
+	&:enabled {
+		cursor: pointer;
+		&:hover {
+			color: base.$color-dark-text;
+			background-color: base.$color-accent;
+		}
+	}
+
+	&:disabled {
+		color: base.$color-dark-secondary;
+		border-color: base.$color-dark-secondary;
+	}
+}

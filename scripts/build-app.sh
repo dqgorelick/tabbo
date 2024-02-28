@@ -5,15 +5,17 @@ source scripts/utils.sh
 function parcelBuild() {
 	local NAME=$1
 
+	# TODO change after redesign is done
 	npx parcel build \
 		--detailed-report \
-		--out-dir 'dist/unpacked/scripts' \
-		--out-file "${NAME}.bundle.js" \
+		--out-dir 'dist/unpacked/' \
+		--out-file "${NAME}.html" \
 		--public-url './' \
-		"src/scripts/${NAME}/index.ts"
+		"src/${NAME}.html"
 }
 
-ENTRYPOINTS=('background')
+# manager automatically builds help and configuration as well
+ENTRYPOINTS=('popup' 'manager')
 
 if [[ "$1" != "" ]]; then
 	inArray "${ENTRYPOINTS[@]}" $1

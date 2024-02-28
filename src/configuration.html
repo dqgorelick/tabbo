@@ -5,28 +5,43 @@
 
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/configuration.scss">
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
-					<h1> Tabbo Configuration </h1>
-				</div>
+		<nav id="header">
+			<h1>Tabbo</h1>
+
+			<div class="spanner"></div>
+
+			<div id="nav-right">
+				<a href="https://github.com/dqgorelick/tabbo" target="_blank">Github</a>
+				<a href="./configuration.html" target="_blank">Settings</a>
+				<a href="./help.html" target="_blank">Help</a>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div id="configurations">
+				<!-- template
+					|
+					 -<div id="send-tab" class="configuration">
+					 -  <label for="config-send-tab" class="configuration-name">Send tab</label>
+					 -  <input id="config-send-tab" class="configuration-input"></input>
+					 -  <p class="configuration-description"></p>
+					 -</div>
+					 -->
 			</div>
 
-			<div class="row" id="commands">
-			</div>
+			<div id="viewer">
+				<img src=""/>
 
-			<div class="row">
-				<div class="col">
-					<button id="save" class="btn btn-primary">Save</button>
+				<div id="save-container">
+					<button id="save" disabled>Save</button>
 				</div>
 			</div>
 		</div>
 
-		<script src="scripts/configuration.bundle.js"></script>
+		<script src="scripts/configuration/index.ts"></script>
 	</body>
 </html>

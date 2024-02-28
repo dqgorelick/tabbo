@@ -105,7 +105,7 @@ export const pushTab = async (): Promise<void> => {
 		const tab: browser.tabs.Tab = await utils.tabs.getCurrent();
 		const newTab: browser.tabs.Tab = await browser.tabs.create(
 			{
-				url : `../tabbo.html#${tab.id}`
+				url : `../manager.html#${tab.id}`
 			}
 		);
 
