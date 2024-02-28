@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
+#j!/usr/bin/env bash
 
-rm -r .cache/
-rm -r dist/packed/*
-rm -r dist/unpacked/*
+rm -r .parcel-cache/
+rm -r dist/**/*

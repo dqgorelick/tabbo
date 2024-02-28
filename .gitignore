@@ -7,4 +7,5 @@ coverage/
 .tern-port
 *.log
 .cache
+.parcel-cache
 .watchman
