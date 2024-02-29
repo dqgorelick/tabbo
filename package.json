@@ -3,7 +3,10 @@
 	"version": "1.0.0",
 	"description": "Tab management browser extension.",
 	"scripts": {
-		"test": "jest"
+		"test": "jest",
+		"build": "./scripts/build.sh",
+		"clean": "./scripts/clean.sh",
+		"pack": "./scripts/pack.sh"
 	},
 	"repository": {
 		"type": "git",
