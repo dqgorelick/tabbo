@@ -21,3 +21,7 @@ button {
 
 	@include base.hover-transition(background-color, base.$color-dark-secondary);
 }
+
+.hide {
+	display: none;
+}
