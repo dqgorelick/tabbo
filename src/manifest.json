@@ -1,11 +1,11 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "tabbo@tabbo.com"
 		}
 	},
-	"browser_action": {
+	"action": {
 		"default_icon": "images/tabbo128.png",
 		"default_popup": "popup.html"
 	},
@@ -22,12 +22,13 @@
 	"background": {
 		"scripts": [
 			"scripts/background/index.ts"
-		],
-		"persistent": false
+		]
 	},
 	"permissions": [
 		"tabs",
-		"activeTab",
+		"activeTab"
+	],
+	"host_permissions": [
 		"<all_urls>"
 	],
 	"commands": {

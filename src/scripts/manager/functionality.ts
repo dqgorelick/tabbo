@@ -146,6 +146,7 @@ export const main = async (sendTabID: number): Promise<void> => {
 	);
 
 	windows.forEach(async (w: browser.Windows.Window, i: number): Promise<void> => {
+		console.log(browser.tabs.captureVisibleTab);
 		const screenshot: string = await browser.tabs.captureVisibleTab(
 				w.id,
 				{
