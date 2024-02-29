@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
+#
+source scripts/utils.sh
 
-if [[ ! -d ./dist/packed ]]; then
-	mkdir -p dist/packed
-fi
+BROWSERS=('chrome' 'firefox')
 
-pushd dist/unpacked
-zip -r --exclude=*.DS_Store* -FS ../packed/tabbo.zip *
-popd
+for BROWSER in "${BROWSERS[@]}"; do
+	borderPrint "Packing for ${BROWSER}"
+
+	if [[ ! -d ./dist/packed/$BROWSER ]]; then
+		mkdir -p dist/packed/$BROWSER
+	fi
+
+	pushd dist/unpacked/$BROWSER
+	zip -r --exclude=*.DS_Store* -FS ../../packed/$BROWSER/tabbo.zip *
+	popd
+done
