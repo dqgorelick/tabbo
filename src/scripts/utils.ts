@@ -1,10 +1,10 @@
 'use strict';
 
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 
-class ElementNotFoundError extends Error {}
+export class ElementNotFoundError extends Error {}
 
 
 export const queryOrThrow = (query: string): HTMLElement => {
@@ -19,7 +19,7 @@ export const queryOrThrow = (query: string): HTMLElement => {
 
 
 export const tabs = {
-	getCurrent: async (): Promise<browser.tabs.Tab> => {
+	getCurrent: async (): Promise<browser.Tabs.Tab> => {
 		return (await browser.tabs.query({active: true, currentWindow: true}))[0];
 	},
 };

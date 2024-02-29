@@ -4,10 +4,10 @@
 import * as tabbo from '../tabbo';
 import * as utils from '../utils';
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 
-const port: browser.runtime.Port = browser.runtime.connect();
+const port: browser.Runtime.Port = browser.runtime.connect();
 
 
 utils.queryOrThrow('#pop').addEventListener('click', (): void => {

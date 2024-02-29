@@ -5,12 +5,10 @@
 		"lib": [
 			"es6",
 			"DOM",
-			"DOM.Iterable",
-			"ScriptHost"
 		],
 		"allowJs": true,
-		"checkJs": false,
-		"outDir": "./dist/unpacked/scripts",
+		"checkJs": true,
+		"outDir": "./dist/unpacked/",
 		"sourceMap": false,
 		"inlineSources": true,
 		"inlineSourceMap": true,
@@ -21,6 +19,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
 
 		"moduleResolution": "node",
 		"listFiles": false
