@@ -5,11 +5,9 @@
 		"lib": [
 			"es6",
 			"DOM",
-			"DOM.Iterable",
-			"ScriptHost"
 		],
 		"allowJs": true,
-		"checkJs": false,
+		"checkJs": true,
 		"outDir": "./dist/unpacked/",
 		"sourceMap": false,
 		"inlineSources": true,

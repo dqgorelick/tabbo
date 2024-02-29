@@ -45,6 +45,6 @@
 		"typescript-language-server": "^4.3.3"
 	},
 	"browserslist": [
-		"since 2017-06"
+		"since 2019-01"
 	]
 }
