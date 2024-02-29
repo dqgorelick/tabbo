@@ -23,7 +23,7 @@
 		"@types/chrome": "0.0.x",
 		"@types/firefox-webext-browser": "^120.0.0",
 		"@types/jest": "^29.0.0",
-		"addons-linter": "^2.0.0",
+		"addons-linter": "^6.0.0",
 		"jest": "^26.0.0",
 		"jest-puppeteer": "^4.4.0",
 		"jest-webextension-mock": "^3.6.1",
