@@ -41,12 +41,18 @@ That should set you up with all the required pieces.
 Make sure you followed the previous section before you proceed!
 
 1. From the extension's main directory, run `./scripts/build.sh`
-    1. This will run webpack to transpile the Typescript and then bundle it into the necessary files
-    2. It also copies over any necessary files into `dist/unpacked`
-    3. After copying over the files, it will zip them in to packaged version of the extension into `dist/packed`
-    4. Finally, it will lint the extension using `addons-linter`
+  1. This will do the transpilation, bundling, and resolving paths via Parcel.
+2. You can load this unpacked extension - process will vary per browser so look up loading development extensions.
+3. If you wish to pack it into an extension run, run `./scripts/pack.sh`
+  1. This will pack it into a single file - it's just a zip file
+4. You can load this as an extension :)
 
 The build process here isn't great and bundling all the needed files during the webpack process is somewhere in the roadmap. This process will change dramatically as Webpack may be replaced with another tool.
+
+### Linting
+There are also linting tools:
+- lint extension: `./scripts/lint-package.sh`
+- lint typescript code: `./scripts/lint-typescript.sh`
 
 ## Creators
 Original creators:

@@ -1,12 +1,10 @@
 #! /usr/bin/env bash
 
-# background and popup are built by discovery in manifest.json
 npx parcel build \
 	--config .parcelrc-webextension \
 	--detailed-report \
-	--dist-dir "dist/unpacked/" \
-	--public-url './' \
-	"manifest.json"
+	--dist-dir dist/unpacked/ \
+	src/manifest.json
 
 # manager automatically builds help and configuration as well
 # ENTRYPOINTS=('manager')
