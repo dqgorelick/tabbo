@@ -1,7 +1,6 @@
 'use strict';
 
 
-import * as tabbo from '../tabbo';
 import * as utils from '../utils';
 import * as functionality from './functionality';
 
@@ -18,12 +17,12 @@ utils.queryOrThrow('body').addEventListener(
 	'keydown',
 	(e: KeyboardEvent): void => {
 		if (e.key === 'Escape') {
-			utils.tabs.getCurrent().then((t: browser.tabs.Tab): void => {
-				browser.tabs.remove(t.id);
+			utils.tabs.getCurrent().then((t: browser.Tabs.Tab): void => {
+				browser.tabs.remove(t.id as number);
 			});
 		}
 	}
 );
 
 
-const port = browser.runtime.connect();
+// const port = browser.runtime.connect();

@@ -23,7 +23,7 @@ export interface PortMessage {
 export enum PopUpCommand {
 	CHROME_KEYBINDS = "CHROME_KEYBINDS",
 	KEYBINDS = "KEYBINDS",
-	HELP = "HELP";
+	HELP = "HELP",
 	POP_TAB = "POP_TAB",
 	PUSH_TAB = "PUSH_TAB",
 	EXPLODE_WINDOW = "EXPLODE_WINDOW",

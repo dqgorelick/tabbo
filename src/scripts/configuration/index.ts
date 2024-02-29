@@ -1,6 +1,5 @@
 'use strict';
 
-import * as tabbo from '../tabbo';
 import * as utils from '../utils';
 
 import browser from 'webextension-polyfill';
@@ -34,12 +33,12 @@ class CommandSelector {
 	name: string;
 	description: string;
 	shortcut: string;
-	inputElem: HTMLElement;
+	inputElem: HTMLInputElement;
 
-	constructor(cmd: brower.commands.Command, input: HTMLInputElement) {
-		this.name = cmd.name;
-		this.description = cmd.description;
-		this.shortcut = cmd.shortcut;
+	constructor(cmd: browser.Commands.Command, input: HTMLInputElement) {
+		this.name = cmd.name as string;
+		this.description = cmd.description as string;
+		this.shortcut = cmd.shortcut as string;
 
 		this.inputElem = input;
 		this.inputElem.value = this.shortcut;
@@ -51,8 +50,8 @@ window.addEventListener('load', async (_) => {
 	const cmds = await browser.commands.getAll();
 	const configurationsElem: HTMLElement = utils.queryOrThrow('#configurations');
 
-	let commandSelectors: CommandSelector[] = cmds.map((cmd: browser.commands.Command) => {
-		const mapped = mapping[cmd.name];
+	let commandSelectors: CommandSelector[] = cmds.map((cmd: browser.Commands.Command) => {
+		const mapped = mapping[cmd.name as string];
 
 		const config = document.createElement('div');
 		config.id = mapped.id;

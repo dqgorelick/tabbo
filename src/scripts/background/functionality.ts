@@ -8,9 +8,9 @@ import browser from 'webextension-polyfill';
 
 
 export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
-	const tabs: browser.tabs.Tab[] = await browser.tabs.query({currentWindow: true});
-	const pinnedTabs: browser.tabs.Tab[] = tabs.filter(
-		(e: browser.tabs.Tab): boolean => e.pinned
+	const tabs: browser.Tabs.Tab[] = await browser.tabs.query({currentWindow: true});
+	const pinnedTabs: browser.Tabs.Tab[] = tabs.filter(
+		(e: browser.Tabs.Tab): boolean => e.pinned
 	);
 	/*
 	 *const unpinnedTabs: browser.tabs.Tab[] = tabs.filter(
@@ -24,7 +24,7 @@ export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
 	 *);
 	 */
 
-	const tab: browser.tabs.Tab = await utils.tabs.getCurrent();
+	const tab: browser.Tabs.Tab = await utils.tabs.getCurrent();
 
 	const currentIndex: number = tab.index;
 	let newIndex: number = 0;
@@ -47,18 +47,20 @@ export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
 
 
 	try {
-		await browser.tabs.move(tab.id, {index: newIndex});
-	} catch (e) {
-		logging.error(e.message);
+		await browser.tabs.move(tab.id as number, {index: newIndex});
+	} catch (err) {
+		if (err instanceof Error) {
+			logging.error(err.message);
+		}
 	}
 };
 
 
 export const popTab = async (): Promise<void> => {
-	const w: browser.windows.Window = await browser.windows.getCurrent({populate:true});
+	const w: browser.Windows.Window = await browser.windows.getCurrent({populate:true});
 
 	if (w.tabs && w.tabs.length !== 1) {
-		const t: browser.tabs.Tab = await utils.tabs.getCurrent();
+		const t: browser.Tabs.Tab = await utils.tabs.getCurrent();
 
 		browser.windows.create({tabId: t.id}).catch((e: Error): void => {
 			logging.error(e.message);
@@ -72,25 +74,25 @@ export const popTab = async (): Promise<void> => {
 
 
 export const pushTab = async (): Promise<void> => {
-	const windows: browser.windows.Window[] = await browser.windows.getAll({populate: true});
+	const windows: browser.Windows.Window[] = await browser.windows.getAll({populate: true});
 
 	// Just in case number of windows goes below 1
 	if (windows.length <= 1) {
 		return;
 	} else if (windows.length === 2) {
-		const tab: browser.tabs.Tab = await utils.tabs.getCurrent();
+		const tab: browser.Tabs.Tab = await utils.tabs.getCurrent();
 
-		const otherWindow: browser.windows.Window[] = windows.filter(
-			(w: browser.windows.Window): boolean => w.id !== tab.windowId
+		const otherWindow: browser.Windows.Window[] = windows.filter(
+			(w: browser.Windows.Window): boolean => w.id !== tab.windowId
 		);
 
-		browser.tabs.move(tab.id, {windowId: otherWindow[0].id, index: -1}).catch(
+		browser.tabs.move(tab.id as number, {windowId: otherWindow[0].id, index: -1}).catch(
 			(e: Error): void => {
 				logging.error(e.message);
 			}
 		);
 
-		browser.windows.update(otherWindow[0].id, {focused: true}).catch(
+		browser.windows.update(otherWindow[0].id as number, {focused: true}).catch(
 			(e: Error): void => {
 				logging.error(e.message);
 			}
@@ -102,8 +104,8 @@ export const pushTab = async (): Promise<void> => {
 			}
 		);
 	} else {
-		const tab: browser.tabs.Tab = await utils.tabs.getCurrent();
-		const newTab: browser.tabs.Tab = await browser.tabs.create(
+		const tab: browser.Tabs.Tab = await utils.tabs.getCurrent();
+		const newTab: browser.Tabs.Tab = await browser.tabs.create(
 			{
 				url : `../manager.html#${tab.id}`
 			}
@@ -113,12 +115,12 @@ export const pushTab = async (): Promise<void> => {
 			if (e.tabId !== newTab.id) {
 				browser.tabs.onActivated.removeListener(onTabChange);
 
-				browser.tabs.get(newTab.id).catch((e: Error): void => {
+				browser.tabs.get(newTab.id as number).catch((e: Error): void => {
 					logging.error(e.message);
 				});
 
 				if (!browser.runtime.lastError) {
-					browser.tabs.remove(newTab.id).catch((e: Error): void => {
+					browser.tabs.remove(newTab.id as number).catch((e: Error): void => {
 						logging.error(e.message);
 					});
 				}
@@ -131,14 +133,14 @@ export const pushTab = async (): Promise<void> => {
 
 
 export const explodeWindow = async (): Promise<void> => {
-	const windows: browser.windows.Window[] = await browser.windows.getAll({populate: true});
+	const windows: browser.Windows.Window[] = await browser.windows.getAll({populate: true});
 
-	windows.forEach((w: browser.windows.Window): void => {
+	windows.forEach((w: browser.Windows.Window): void => {
 		if (!w.tabs) {
 			return;
 		}
 
-		w.tabs.forEach((t: browser.tabs.Tab): void => {
+		w.tabs.forEach((t: browser.Tabs.Tab): void => {
 			const width: number = Math.floor(Math.random() * (screen.width * 0.75) + 1);
 			const height: number = Math.floor(Math.random() * (screen.height * 0.75) + 1);
 			const left: number = Math.floor(Math.random() * (screen.width - width) + 1);
@@ -159,12 +161,12 @@ export const explodeWindow = async (): Promise<void> => {
 
 
 export const gatherWindow = async (): Promise<void> => {
-	const windows: browser.windows.Window[] = await browser.windows.getAll({populate: true});
+	const windows: browser.Windows.Window[] = await browser.windows.getAll({populate: true});
 
 	let isFirstWindow: boolean = true;
 	let firstWindowId: number | undefined;
 
-	windows.forEach((w: browser.windows.Window): void => {
+	windows.forEach((w: browser.Windows.Window): void => {
 		if (isFirstWindow) {
 			isFirstWindow = false;
 			firstWindowId = w.id;
@@ -173,9 +175,9 @@ export const gatherWindow = async (): Promise<void> => {
 				return;
 			}
 
-			w.tabs.forEach((t: browser.tabs.Tab): void => {
+			w.tabs.forEach((t: browser.Tabs.Tab): void => {
 				browser.tabs.move(
-					t.id,
+					t.id as number,
 					{windowId: firstWindowId, index: -1},
 				).catch((e: Error): void => {
 					logging.error(e.message);
