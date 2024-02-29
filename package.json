@@ -24,8 +24,10 @@
 	"devDependencies": {
 		"@parcel/config-default": "^2.11.0",
 		"@parcel/config-webextension": "^2.11.0",
+		"@parcel/packager-webextension": "^2.12.0",
 		"@parcel/transformer-sass": "^2.11.0",
 		"@parcel/transformer-typescript-tsc": "^2.11.0",
+		"@parcel/transformer-webextension": "^2.12.0",
 		"@types/chrome": "0.0.x",
 		"@types/firefox-webext-browser": "^120.0.0",
 		"@types/jest": "^29.0.0",
