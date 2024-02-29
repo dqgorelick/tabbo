@@ -10,11 +10,6 @@ module.exports = {
 	coveragePathIgnorePatterns: [
 		'/node_modules/',
 	],
-	globals: {
-		'ts-jest': {
-			tsConfig: 'tsconfig.json',
-		},
-	},
 	moduleDirectories: [
 		path.resolve(__dirname, 'node_modules'),
 		path.resolve(__dirname, 'src'),
@@ -37,7 +32,11 @@ module.exports = {
 		'node_modules/',
 	],
 	transform: {
-		'^.+\\.ts$': 'ts-jest',
+		'^.+\\.ts$': [
+			'ts-jest', {
+				tsconfig: 'tsconfig.json',
+			}
+		],
 	},
 	preset: 'ts-jest',
 };

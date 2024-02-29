@@ -4,7 +4,7 @@
 import {browser} from 'webextension-polyfill-ts';
 
 
-class ElementNotFoundError extends Error {}
+export class ElementNotFoundError extends Error {}
 
 
 export const queryOrThrow = (query: string): HTMLElement => {
