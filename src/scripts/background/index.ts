@@ -4,7 +4,7 @@ import * as tabbo from '../tabbo';
 import * as functionality from './functionality';
 import * as logging from '../logging';
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 
 // Handle keyboard shortcuts

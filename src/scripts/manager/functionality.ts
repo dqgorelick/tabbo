@@ -2,7 +2,7 @@
 
 import * as utils from '../utils';
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 const buildCurrentTabPreview = (t: browser.tabs.Tab, screenshot: string): HTMLElement => {
 	const div: HTMLDivElement = document.createElement('div');

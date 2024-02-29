@@ -5,7 +5,7 @@ import * as tabbo from '../tabbo';
 import * as utils from '../utils';
 import * as functionality from './functionality';
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 
 const sendTabID: number = parseInt(window.location.hash.slice(1));

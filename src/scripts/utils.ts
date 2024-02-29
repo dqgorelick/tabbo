@@ -1,7 +1,7 @@
 'use strict';
 
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 
 export class ElementNotFoundError extends Error {}

@@ -4,7 +4,7 @@
 import * as tabbo from '../tabbo';
 import * as utils from '../utils';
 
-import {browser} from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 
 const port: browser.runtime.Port = browser.runtime.connect();
