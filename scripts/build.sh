@@ -1,10 +1,18 @@
 #! /usr/bin/env bash
 
-npx parcel build \
-	--config .parcelrc-webextension \
-	--detailed-report \
-	--dist-dir dist/unpacked/ \
-	src/manifest.json
+source scripts/utils.sh
+
+BROWSERS=('chrome' 'firefox')
+
+for BROWSER in "${BROWSERS[@]}"; do
+	borderPrint "Building for ${BROWSER}"
+
+		# --detailed-report \
+	npx parcel build \
+		--config .parcelrc-webextension \
+		--dist-dir dist/unpacked/$BROWSER \
+		src/$BROWSER-manifest.json
+done
 
 # manager automatically builds help and configuration as well
 # ENTRYPOINTS=('manager')
