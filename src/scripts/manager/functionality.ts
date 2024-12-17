@@ -90,6 +90,7 @@ export const main = async (sendTabID: number): Promise<void> => {
 			windowTypes: ['normal']
 		})
 	).filter((w: browser.Windows.Window): boolean => {
+		// not current
 		return current.id !== w.id;
 	}).sort((a: browser.Windows.Window, b: browser.Windows.Window): number => {
 		const aId = a.id as number;
