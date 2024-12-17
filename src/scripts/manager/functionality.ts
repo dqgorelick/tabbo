@@ -85,7 +85,10 @@ export const main = async (sendTabID: number): Promise<void> => {
 	utils.queryOrThrow('#current-tab-container').prepend(buildCurrentTabPreview(t, ''));
 
 	const windows: browser.Windows.Window[] = (
-		await browser.windows.getAll({populate: true})
+		await browser.windows.getAll({
+			populate: true,
+			windowTypes: ['normal']
+		})
 	).filter((w: browser.Windows.Window): boolean => {
 		return current.id !== w.id;
 	}).sort((a: browser.Windows.Window, b: browser.Windows.Window): number => {
