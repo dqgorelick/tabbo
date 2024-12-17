@@ -74,7 +74,10 @@ export const popTab = async (): Promise<void> => {
 
 
 export const pushTab = async (): Promise<void> => {
-	const windows: browser.Windows.Window[] = await browser.windows.getAll({populate: true});
+	const windows: browser.Windows.Window[] = await browser.windows.getAll({
+		populate: true,
+		windowTypes: ['normal']
+	});
 
 	// Just in case number of windows goes below 1
 	if (windows.length <= 1) {
