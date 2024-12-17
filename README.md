@@ -1,10 +1,10 @@
 # Tabbo
-Chrome Tab Management Hotkeys!
+Chrome/Firefox Tab Management Hotkeys!
 
 ## What is this??
-Tabbo is a hotkeys management tool built specially for Google Chrome. It is built with the intention to be combined with other window management softwares to maximize productivity, and minimize the annoying mouse draggy, sometimes accidentally pop-offing, vanilla chrome UI/UX.
+Tabbo is a hotkeys management tool built for Chrome and Firefox. It should work for any browsers based on these two. It is built with the intention to be combined with other window management softwares to maximize productivity, and minimize the annoying mouse draggy, sometimes accidentally pop-offing, vanilla browser UI/UX.
 
-You can modify the hotkeys by navigating to chrome://settings/extensions/configureCommands in your chrome window.
+You can modify the hotkeys by navigating to the plugin and clicking settings.
 
 The app features hotkeys for:
 - moving tabs left and right
@@ -17,6 +17,8 @@ We hope you all enjoy,
 
 ## Disclaimer
 Tabbo has access to the `"<all_urls>"` permission which gives it access to "All of your data". This allows the extension to take advantage of `captureVisibleTab` which allows you to see screenshots of your open windows (reference - https://developer.chrome.com/extensions/tabs). No data is being had.
+
+NOTE that this now needs to be explicitly enabled in the settings page. Without this, you will not see screenshot of the window when switching.
 
 
 #### How can I contribute??
@@ -40,14 +42,19 @@ That should set you up with all the required pieces.
 ### Building
 Make sure you followed the previous section before you proceed!
 
-1. From the extension's main directory, run `npm run build` OR `./scripts/build.sh`
+1. From the extension's main directory, run `npm run build`
   1. This will do the transpilation, bundling, and resolving paths via Parcel.
 2. You can load this unpacked extension - process will vary per browser so look up loading development extensions.
-3. If you wish to pack it into an extension run, run `npm run pack` OR `./scripts/pack.sh`
+3. If you wish to pack it into an extension run, run `npm run pack`
   1. This will pack it into a single file - it's just a zip file
 4. You can load this as an extension :)
 
-The build process here isn't great and bundling all the needed files during the webpack process is somewhere in the roadmap. This process will change dramatically as Webpack may be replaced with another tool.
+#### Details
+
+- We use parel to do most of the heavy lifting including transpilation and bundling.
+  - A web extension specific configuration is used
+- Jest is used for testing
+
 
 ### Testing
 Testing is pretty bare but it exists!
