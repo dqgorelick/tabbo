@@ -1,6 +1,9 @@
 # Tabbo
 Chrome/Firefox Tab Management Hotkeys!
 
+Firefox: https://addons.mozilla.org/en-US/firefox/addon/tabbo/
+Chrome: https://chromewebstore.google.com/detail/tabbo/hedbkonckghacebehjebpfknhdbobiko
+
 ## What is this??
 Tabbo is a hotkeys management tool built for Chrome and Firefox. It should work for any browsers based on these two. It is built with the intention to be combined with other window management softwares to maximize productivity, and minimize the annoying mouse draggy, sometimes accidentally pop-offing, vanilla browser UI/UX.
 
