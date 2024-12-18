@@ -142,6 +142,22 @@ export const pinToggle = async (): Promise<void> => {
   });
 };
 
+export const duplicate = async (): Promise<void> => {
+  const tab: browser.Tabs.Tab = await utils.tabs.getCurrent();
+
+	if (!tab.id) {
+		return;
+	}
+
+	await browser.tabs.duplicate(
+		tab.id,
+		{
+			index: tab.index + 1,
+			active: true
+		}
+	);
+};
+
 export const explodeWindow = async (): Promise<void> => {
   const windows: browser.Windows.Window[] = await browser.windows.getAll({
     populate: true,
