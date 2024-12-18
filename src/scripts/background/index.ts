@@ -32,6 +32,10 @@ browser.commands.onCommand.addListener(async (cmd: string): Promise<void> => {
       functionality.pushTab();
       break;
 
+    case tabbo.Command.PIN_TOGGLE:
+      functionality.pinToggle();
+      break;
+
     default:
       throw new tabbo.CommandNotFoundError(`Command not found: ${cmd}`);
   }
@@ -68,6 +72,10 @@ browser.runtime.onConnect.addListener((port: browser.Runtime.Port): void => {
 
       case tabbo.PopUpCommand.PUSH_TAB:
         functionality.pushTab();
+        break;
+
+      case tabbo.PopUpCommand.PIN_TOGGLE:
+        functionality.pinToggle();
         break;
 
       case tabbo.PopUpCommand.EXPLODE_WINDOW:

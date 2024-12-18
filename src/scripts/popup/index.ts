@@ -19,6 +19,10 @@ utils.queryOrThrow("#join").addEventListener("click", (): void => {
   port.postMessage({ action: tabbo.PopUpCommand.GATHER_WINDOW });
 });
 
+utils.queryOrThrow("#pin-toggle").addEventListener("click", (): void => {
+  port.postMessage({ action: tabbo.PopUpCommand.PIN_TOGGLE });
+});
+
 /* FIXME
  * Chrome doesn't support `browser.runtime.getBrowserInfo` so we can't use that!
  * When it does, change to that.

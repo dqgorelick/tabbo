@@ -23,6 +23,10 @@ const mapping = {
     name: "Pop tab",
     id: "pop-tab",
   },
+  PIN_TOGGLE: {
+    name: "Toggle pin status",
+    id: "toggle-pin",
+  },
 };
 
 const state = {
@@ -57,7 +61,7 @@ window.addEventListener("load", async (_) => {
       config.id = mapped.id;
       config.className = "configuration";
 
-      config.addEventListener("click", (e) => {
+      config.addEventListener("click", (_) => {
         let activeElems = document.querySelectorAll(".active");
         for (let elem of activeElems) {
           elem.classList.remove("active");
@@ -84,7 +88,7 @@ window.addEventListener("load", async (_) => {
 
       const desc = document.createElement("p");
       desc.className = "configuration-description";
-      desc.innerText = cmd.description;
+      desc.innerText = cmd.description || "";
 
       config.appendChild(title);
       config.appendChild(input);
