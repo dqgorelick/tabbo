@@ -6,6 +6,8 @@
 		"test": "jest",
 		"build": "./scripts/build.sh",
 		"clean": "./scripts/clean.sh",
+		"clean-build": "./scripts/clean.sh && ./scripts/build.sh",
+		"all": "./scripts/clean.sh && ./scripts/build.sh && ./scripts/pack.sh",
 		"pack": "./scripts/pack.sh",
 		"lint-package": "./scripts/lint-package.sh",
 		"lint-typescript": "./scripts/lint-typescript.sh",
