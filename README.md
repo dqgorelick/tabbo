@@ -69,11 +69,6 @@ Testing is pretty bare but it exists!
 
 `npm test`
 
-### Linting
-There are also linting tools:
-- lint extension: `./scripts/lint-package.sh`
-- lint typescript code: `./scripts/lint-typescript.sh`
-
 ## Creators
 Original creators:
 - [Dan Gorelick](https://github.com/dqgorelick)
