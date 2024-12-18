@@ -1,33 +1,30 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"module": "es6",
-		"lib": [
-			"es6",
-			"DOM",
-		],
-		"allowJs": true,
-		"checkJs": true,
-		"outDir": "./dist/unpacked/",
-		"sourceMap": false,
-		"inlineSources": true,
-		"inlineSourceMap": true,
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "lib": ["es6", "DOM"],
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "./dist/unpacked/",
+    "sourceMap": false,
+    "inlineSources": true,
+    "inlineSourceMap": true,
 
-		"strict": true,
-		"alwaysStrict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitReturns": true,
-		"experimentalDecorators": true,
-		"allowSyntheticDefaultImports": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
 
-		"moduleResolution": "node",
-		"listFiles": false
-	},
-	"files": [
-		"src/scripts/background/index.ts",
-		"src/scripts/configuration/index.ts",
-		"src/scripts/popup/index.ts",
-		"src/scripts/manager/index.ts"
-	]
+    "moduleResolution": "node",
+    "listFiles": false
+  },
+  "files": [
+    "src/scripts/background/index.ts",
+    "src/scripts/configuration/index.ts",
+    "src/scripts/popup/index.ts",
+    "src/scripts/manager/index.ts"
+  ]
 }
