@@ -7,10 +7,10 @@ import browser from "webextension-polyfill";
 const idPrefix = "config-";
 
 const mapping = {
-	DUPLICATE: {
-		name: "Duplicate tab",
-		id: "duplicate-tab"
-	},
+  DUPLICATE: {
+    name: "Duplicate tab",
+    id: "duplicate-tab",
+  },
   MOVE_RIGHT: {
     name: "Move tab right",
     id: "move-tab-right",

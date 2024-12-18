@@ -6,7 +6,7 @@ export enum Direction {
 }
 
 export enum Command {
-	DUPLICATE = "DUPLICATE",
+  DUPLICATE = "DUPLICATE",
   MOVE_LEFT = "MOVE_LEFT",
   MOVE_RIGHT = "MOVE_RIGHT",
   PIN_TOGGLE = "PIN_TOGGLE",
@@ -20,7 +20,7 @@ export interface PortMessage {
 
 export enum PopUpCommand {
   CHROME_KEYBINDS = "CHROME_KEYBINDS",
-	DUPLICATE = "DUPLICATE",
+  DUPLICATE = "DUPLICATE",
   EXPLODE_WINDOW = "EXPLODE_WINDOW",
   GATHER_WINDOW = "GATHER_WINDOW",
   HELP = "HELP",

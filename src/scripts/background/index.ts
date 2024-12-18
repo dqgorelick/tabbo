@@ -62,9 +62,9 @@ browser.runtime.onConnect.addListener((port: browser.Runtime.Port): void => {
         });
         break;
 
-    case tabbo.PopUpCommand.DUPLICATE:
-      functionality.duplicate();
-      break;
+      case tabbo.PopUpCommand.DUPLICATE:
+        functionality.duplicate();
+        break;
 
       case tabbo.PopUpCommand.EXPLODE_WINDOW:
         functionality.explodeWindow();
