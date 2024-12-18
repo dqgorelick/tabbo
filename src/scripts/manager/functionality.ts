@@ -8,19 +8,22 @@ const buildCurrentTabPreview = (
   t: browser.Tabs.Tab,
   screenshot: string,
 ): HTMLElement => {
-  const div: HTMLDivElement = document.createElement("div");
-  div.id = "current-tab";
-  div.className = "preview";
-  div.style.backgroundImage = `url(${screenshot})`;
-  div.innerHTML = `
-	<div class="preview-top"></div>
-	<div class="preview-bottom">
-	<img src="${t.favIconUrl}"/>
-		<p>
-			${t.title}
-		</p>
-	</div>
-	`;
+  const div: HTMLDivElement = utils.buildDiv(
+    {
+      id: "current-tab",
+      className: "preview",
+      style: {
+        backgroundImage: `url(${screenshot})`,
+      },
+    },
+    [
+      utils.buildDiv({ className: "preview-top" }),
+      utils.buildDiv({ className: "preview-bottom" }, [
+        utils.buildImg({ src: t.favIconUrl || "" }),
+        utils.buildP({ innerText: t.title || "" }),
+      ]),
+    ],
+  );
 
   return div;
 };
@@ -30,38 +33,48 @@ const buildWindowPreview = (
   screenshot: string,
   index: number,
 ): HTMLDivElement => {
-  const div: HTMLDivElement = document.createElement("div");
   const tabs: browser.Tabs.Tab[] | undefined = w.tabs;
   if (tabs === undefined) {
-    div.innerText = "Error getting tabs...";
-    return div;
+    return utils.buildDiv({ innerText: "Error getting tabs..." });
   }
 
   let currentTab = tabs.find((t: browser.Tabs.Tab) => {
     return t.active;
   });
   if (currentTab === undefined) {
-    div.innerText = "Error getting current tab...";
-    return div;
+    return utils.buildDiv({ innerText: "Error getting current tab..." });
   }
 
-  div.className = "preview window";
-  div.style.backgroundImage = `url(${screenshot})`;
-  div.innerHTML = `
-	<div class="preview-top">
-		<h3>${index}</h3>
-	</div>
-	<div class="preview-bottom">
-		<img src="${currentTab.favIconUrl}"/>
-		<p>
-			${currentTab.title}
-		</p>
-		<div class="spanner"></div>
-		<p>${tabs.length + (tabs.length === 1 ? " tab" : " tabs")}</p>
-	</div>
-	`;
-
-  return div;
+  return utils.buildDiv(
+    {
+      className: "preview window",
+      style: {
+        backgroundImage: `url(${screenshot})`,
+      },
+    },
+    [
+      utils.buildDiv(
+        {
+          className: "preview-top",
+        },
+        [utils.buildH3({ innerText: index.toString() })],
+      ),
+      utils.buildDiv(
+        {
+          className: "preview-bottom",
+        },
+        [
+          utils.buildImg({ src: currentTab.favIconUrl || "" }),
+          utils.buildP({ innerText: currentTab.title || "" }),
+          utils.buildDiv({ className: "spanner" }),
+          utils.buildP({
+            innerText:
+              tabs.length.toString() + (tabs.length === 1 ? " tab" : " tabs"),
+          }),
+        ],
+      ),
+    ],
+  );
 };
 
 export const moveTabToWindow = async (
