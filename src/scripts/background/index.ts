@@ -16,6 +16,10 @@ browser.commands.onCommand.addListener(async (cmd: string): Promise<void> => {
 
   const cmdEnum: tabbo.Command = tabbo.Command[<keyof typeof tabbo.Command>cmd];
   switch (cmdEnum) {
+    case tabbo.Command.DUPLICATE:
+      functionality.duplicate();
+      break;
+
     case tabbo.Command.MOVE_RIGHT:
       functionality.moveTab(tabbo.Direction.RIGHT);
       break;
@@ -24,16 +28,16 @@ browser.commands.onCommand.addListener(async (cmd: string): Promise<void> => {
       functionality.moveTab(tabbo.Direction.LEFT);
       break;
 
+    case tabbo.Command.PIN_TOGGLE:
+      functionality.pinToggle();
+      break;
+
     case tabbo.Command.POP_TAB:
       functionality.popTab();
       break;
 
     case tabbo.Command.PUSH_TAB:
       functionality.pushTab();
-      break;
-
-    case tabbo.Command.PIN_TOGGLE:
-      functionality.pinToggle();
       break;
 
     default:
@@ -52,18 +56,34 @@ browser.runtime.onConnect.addListener((port: browser.Runtime.Port): void => {
     }
 
     switch (cmd.action) {
-      case tabbo.PopUpCommand.KEYBINDS:
-        await browser.tabs.create({ url: "../configuration.html" });
-        break;
-
       case tabbo.PopUpCommand.CHROME_KEYBINDS:
         await browser.tabs.create({
           url: "chrome://extensions/configureCommands",
         });
         break;
 
+    case tabbo.PopUpCommand.DUPLICATE:
+      functionality.duplicate();
+      break;
+
+      case tabbo.PopUpCommand.EXPLODE_WINDOW:
+        functionality.explodeWindow();
+        break;
+
+      case tabbo.PopUpCommand.GATHER_WINDOW:
+        functionality.gatherWindow();
+        break;
+
       case tabbo.PopUpCommand.HELP:
         await browser.tabs.create({ url: "../help.html" });
+        break;
+
+      case tabbo.PopUpCommand.KEYBINDS:
+        await browser.tabs.create({ url: "../configuration.html" });
+        break;
+
+      case tabbo.PopUpCommand.PIN_TOGGLE:
+        functionality.pinToggle();
         break;
 
       case tabbo.PopUpCommand.POP_TAB:
@@ -72,18 +92,6 @@ browser.runtime.onConnect.addListener((port: browser.Runtime.Port): void => {
 
       case tabbo.PopUpCommand.PUSH_TAB:
         functionality.pushTab();
-        break;
-
-      case tabbo.PopUpCommand.PIN_TOGGLE:
-        functionality.pinToggle();
-        break;
-
-      case tabbo.PopUpCommand.EXPLODE_WINDOW:
-        functionality.explodeWindow();
-        break;
-
-      case tabbo.PopUpCommand.GATHER_WINDOW:
-        functionality.gatherWindow();
         break;
 
       default:

@@ -31,6 +31,13 @@
 		"<all_urls>"
 	],
 	"commands": {
+		"DUPLICATE": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+D",
+				"mac": "MacCtrl+Shift+D"
+			},
+			"description": "Duplicates the selected tab and selects the newly duplicated tab."
+		},
 		"MOVE_RIGHT": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+L",

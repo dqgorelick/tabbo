@@ -23,6 +23,10 @@ utils.queryOrThrow("#pin-toggle").addEventListener("click", (): void => {
   port.postMessage({ action: tabbo.PopUpCommand.PIN_TOGGLE });
 });
 
+utils.queryOrThrow("#duplicate").addEventListener("click", (): void => {
+  port.postMessage({ action: tabbo.PopUpCommand.DUPLICATE });
+});
+
 /* FIXME
  * Chrome doesn't support `browser.runtime.getBrowserInfo` so we can't use that!
  * When it does, change to that.
