@@ -1,6 +1,6 @@
 {
-	"background": {
-		"service_worker": "scripts/background/index.ts",
-		"type": "module"
-	}
+  "background": {
+    "service_worker": "scripts/background/index.ts",
+    "type": "module"
+  }
 }

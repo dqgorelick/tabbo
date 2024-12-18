@@ -1,7 +1,5 @@
 {
-	"background": {
-		"scripts": [
-			"scripts/background/index.ts"
-		]
-	}
+  "background": {
+    "scripts": ["scripts/background/index.ts"]
+  }
 }
