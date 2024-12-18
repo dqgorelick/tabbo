@@ -49,6 +49,11 @@ Make sure you followed the previous section before you proceed!
   1. This will pack it into a single file - it's just a zip file
 4. You can load this as an extension :)
 
+### Linting and formatting
+- `npm run format` - there are also file type specific ones `format-html`, `format-css`, and `format-js`
+- `npm run lint-package` for linting package
+- `npm run lint-typescript` for linting typescript code
+
 #### Details
 
 - We use parel to do most of the heavy lifting including transpilation and bundling.

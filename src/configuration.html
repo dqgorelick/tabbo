@@ -1,47 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<title>Tabbo</title>
+  <head>
+    <title>Tabbo</title>
 
-		<meta charset="utf-8">
+    <meta charset="utf-8" />
 
-		<link rel="stylesheet" type="text/css" href="styles/configuration.scss">
-	</head>
+    <link rel="stylesheet" type="text/css" href="styles/configuration.scss" />
+  </head>
 
-	<body>
-		<nav id="header">
-			<h1>Tabbo</h1>
+  <body>
+    <nav id="header">
+      <h1>Tabbo</h1>
 
-			<div class="spanner"></div>
+      <div class="spanner"></div>
 
-			<div id="nav-right">
-				<a href="https://github.com/dqgorelick/tabbo" target="_blank">Github</a>
-				<a href="configuration.html" target="_blank">Settings</a>
-				<a href="help.html" target="_blank">Help</a>
-			</div>
-		</nav>
+      <div id="nav-right">
+        <a href="https://github.com/dqgorelick/tabbo" target="_blank">Github</a>
+        <a href="configuration.html" target="_blank">Settings</a>
+        <a href="help.html" target="_blank">Help</a>
+      </div>
+    </nav>
 
-		<div class="container">
-			<div id="configurations">
-				<!-- template
+    <div class="container">
+      <div id="configurations">
+        <!-- template
 					|
 					 -<div id="send-tab" class="configuration">
 					 -  <label for="config-send-tab" class="configuration-name">Send tab</label>
 					 -  <input id="config-send-tab" class="configuration-input"></input>
 					 -  <p class="configuration-description"></p>
 					 -</div>
-					 -->
-			</div>
+					 --></div>
 
-			<div id="viewer">
-				<!-- <img src=""/> -->
+      <div id="viewer">
+        <!-- <img src=""/> -->
 
-				<div id="save-container">
-					<button id="save" disabled>Save</button>
-				</div>
-			</div>
-		</div>
+        <div id="save-container">
+          <button id="save" disabled>Save</button>
+        </div>
+      </div>
+    </div>
 
-		<script type="module" src="scripts/configuration/index.ts"></script>
-	</body>
+    <script type="module" src="scripts/configuration/index.ts"></script>
+  </body>
 </html>
