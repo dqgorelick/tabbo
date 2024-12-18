@@ -8,7 +8,11 @@
 		"clean": "./scripts/clean.sh",
 		"pack": "./scripts/pack.sh",
 		"lint-package": "./scripts/lint-package.sh",
-		"lint-typescript": "./scripts/lint-typescript.sh"
+		"lint-typescript": "./scripts/lint-typescript.sh",
+		"format": "./scripts/format.sh",
+		"format-html": "./scripts/format-html.sh",
+		"format-css": "./scripts/format-css.sh",
+		"format-js": "./scripts/format-js.sh"
 	},
 	"repository": {
 		"type": "git",
