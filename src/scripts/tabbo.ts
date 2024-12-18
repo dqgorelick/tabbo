@@ -6,8 +6,9 @@ export enum Direction {
 }
 
 export enum Command {
-  MOVE_RIGHT = "MOVE_RIGHT",
+  PIN_TOGGLE = "PIN_TOGGLE",
   MOVE_LEFT = "MOVE_LEFT",
+  MOVE_RIGHT = "MOVE_RIGHT",
   POP_TAB = "POP_TAB",
   PUSH_TAB = "PUSH_TAB",
 }
@@ -17,13 +18,14 @@ export interface PortMessage {
 }
 
 export enum PopUpCommand {
+  PIN_TOGGLE = "PIN_TOGGLE",
   CHROME_KEYBINDS = "CHROME_KEYBINDS",
-  KEYBINDS = "KEYBINDS",
-  HELP = "HELP",
-  POP_TAB = "POP_TAB",
-  PUSH_TAB = "PUSH_TAB",
   EXPLODE_WINDOW = "EXPLODE_WINDOW",
   GATHER_WINDOW = "GATHER_WINDOW",
+  HELP = "HELP",
+  KEYBINDS = "KEYBINDS",
+  POP_TAB = "POP_TAB",
+  PUSH_TAB = "PUSH_TAB",
 }
 
 export class CommandNotFoundError extends Error {}

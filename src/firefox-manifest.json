@@ -60,6 +60,13 @@
 				"mac": "MacCtrl+Shift+K"
 			},
 			"description": "Send the current tab to another window. If there is only one window, it will do nothing. If there are two, it will automatically send to the other window. If there are more than two, a window will pop up prompting you to choose which window to send it to."
+		},
+		"PIN_TOGGLE": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+P",
+				"mac": "MacCtrl+Shift+P"
+			},
+			"description": "Toggles whether the current tab is pinned or not."
 		}
 	}
 }

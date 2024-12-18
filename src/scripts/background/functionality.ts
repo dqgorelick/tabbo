@@ -134,6 +134,14 @@ export const pushTab = async (): Promise<void> => {
   }
 };
 
+export const pinToggle = async (): Promise<void> => {
+  const tab: browser.Tabs.Tab = await utils.tabs.getCurrent();
+
+  await browser.tabs.update(tab.id, {
+    pinned: !tab.pinned,
+  });
+};
+
 export const explodeWindow = async (): Promise<void> => {
   const windows: browser.Windows.Window[] = await browser.windows.getAll({
     populate: true,
