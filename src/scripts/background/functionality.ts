@@ -13,17 +13,6 @@ export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
   const pinnedTabs: browser.Tabs.Tab[] = tabs.filter(
     (e: browser.Tabs.Tab): boolean => e.pinned,
   );
-  /*
-   *const unpinnedTabs: browser.tabs.Tab[] = tabs.filter(
-   *    (e: browser.tabs.Tab): boolean => !e.pinned
-   *);
-   *const highlightedTabs: browser.tabs.Tab[] = tabs.filter(
-   *    (e: browser.tabs.Tab): boolean => e.highlighted
-   *);
-   *const nonHighlightedTabs: browser.tabs.Tab[] = tabs.filter(
-   *    (e: browser.tabs.Tab): boolean => !e.highlighted
-   *);
-   */
 
   const tab: browser.Tabs.Tab = await utils.tabs.getCurrent();
 

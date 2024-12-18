@@ -26,6 +26,7 @@
 	},
 	"files": [
 		"src/scripts/background/index.ts",
+		"src/scripts/configuration/index.ts",
 		"src/scripts/popup/index.ts",
 		"src/scripts/manager/index.ts"
 	]

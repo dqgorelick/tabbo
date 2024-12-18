@@ -4,9 +4,9 @@ import * as utils from "../utils";
 
 import browser from "webextension-polyfill";
 
-const idPrefix = "config-";
+const kIdPrefix = "config-";
 
-const mapping = {
+const kMapping = {
   DUPLICATE: {
     name: "Duplicate tab",
     id: "duplicate-tab",
@@ -59,7 +59,7 @@ window.addEventListener("load", async (_) => {
 
   let commandSelectors: CommandSelector[] = cmds.map(
     (cmd: browser.Commands.Command) => {
-      const mapped = mapping[cmd.name as string];
+      const mapped = kMapping[cmd.name as string];
 
       const config = document.createElement("div");
       config.id = mapped.id;
@@ -77,10 +77,10 @@ window.addEventListener("load", async (_) => {
       const title = document.createElement("label");
       title.className = "configuration-name";
       title.innerText = mapped.name;
-      title.setAttribute("for", `${idPrefix}-${mapped.id}`);
+      title.setAttribute("for", `${kIdPrefix}-${mapped.id}`);
 
       const input = document.createElement("input");
-      input.id = `${idPrefix}-${mapped.id}`;
+      input.id = `${kIdPrefix}-${mapped.id}`;
       input.className = "configuration-input";
 
       input.addEventListener("change", () => {

@@ -5,9 +5,9 @@ import * as functionality from "./functionality";
 
 import browser from "webextension-polyfill";
 
-const sendTabID: number = parseInt(window.location.hash.slice(1));
+const kSendTabId: number = parseInt(window.location.hash.slice(1));
 
-functionality.main(sendTabID);
+functionality.main(kSendTabId);
 
 utils
   .queryOrThrow("body")
