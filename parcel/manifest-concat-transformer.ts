@@ -22,13 +22,13 @@ export default new Transformer({
     }
 
     let source = await asset.getCode();
-		asset.setCode(
-			JSON.stringify({
-				...config,
-				// make sure the browser specific manifest takes precedence
-				...JSON.parse(source),
-			})
-		);
+    asset.setCode(
+      JSON.stringify({
+        ...config,
+        // make sure the browser specific manifest takes precedence
+        ...JSON.parse(source),
+      }),
+    );
 
     return [asset];
   },
