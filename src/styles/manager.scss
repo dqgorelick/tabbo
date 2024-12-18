@@ -1,139 +1,139 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use 'base';
-@use 'theme';
-@use 'header';
+@use "base";
+@use "theme";
+@use "header";
 
 $preview-width: 405px;
 $preview-height: 270px;
 
 body {
-	width: 100%;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .preview {
-	width: $preview-width;
-	height: $preview-height;
-	background-color: base.$color-dark-primary;
-	border-radius: base.$radius;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: $preview-width;
+  height: $preview-height;
+  background-color: base.$color-dark-primary;
+  border-radius: base.$radius;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-	background-size: cover;
-	background-position: center;
+  background-size: cover;
+  background-position: center;
 
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-	&.window {
-		cursor: pointer;
+  &.window {
+    cursor: pointer;
 
-		@include base.hover-transition(transform, translateY(-2px));
+    @include base.hover-transition(transform, translateY(-2px));
 
-		.preview-top {
-			background-color: rgba(0, 0, 0, 0.5);
+    .preview-top {
+      background-color: rgba(0, 0, 0, 0.5);
 
-			@include base.hover-transition(background-color, rgba(0, 0, 0, 0.8));
-		}
-	}
+      @include base.hover-transition(background-color, rgba(0, 0, 0, 0.8));
+    }
+  }
 
-	.preview-top {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-content: center;
+  .preview-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 
-		border-radius: base.$radius base.$radius 0 0;
+    border-radius: base.$radius base.$radius 0 0;
 
-		h3 {
-			color: base.$color-dark-text;
-			font-size: 36px;
-			margin: 0;
-		}
-	}
+    h3 {
+      color: base.$color-dark-text;
+      font-size: 36px;
+      margin: 0;
+    }
+  }
 
-	.preview-bottom {
-		background-color: base.$color-accent;
-		height: 45px;
-		border-radius: 0 0 base.$radius base.$radius;
+  .preview-bottom {
+    background-color: base.$color-accent;
+    height: 45px;
+    border-radius: 0 0 base.$radius base.$radius;
 
-		display: flex;
-		flex-direction: row;
+    display: flex;
+    flex-direction: row;
 
-		img {
-			max-height: 25px;
-			margin: auto 5px;
-		}
+    img {
+      max-height: 25px;
+      margin: auto 5px;
+    }
 
-		p {
-			color: base.$color-dark-text;
-			font-size: base.$font-size-tertiary;
-			margin: auto 5px;
-			text-align: left;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: $preview-width * 0.7;
-			max-height: 45px;
-		}
-	}
+    p {
+      color: base.$color-dark-text;
+      font-size: base.$font-size-tertiary;
+      margin: auto 5px;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: $preview-width * 0.7;
+      max-height: 45px;
+    }
+  }
 }
 
 #current-tab-container {
-	background-color: color.scale(base.$color-dark-primary, $lightness: -50%);
-	width: 100%;
-	display: flex;
-	align-content: center;
-	justify-content: center;
+  background-color: color.scale(base.$color-dark-primary, $lightness: -50%);
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 
-	#current-tab {
-		margin: 40px 0;
-	}
+  #current-tab {
+    margin: 40px 0;
+  }
 
-	#instruction {
-		margin: auto 25px;
-		padding: 0;
-		color: base.$color-dark-text;
-		font-size: 36px;
-	}
+  #instruction {
+    margin: auto 25px;
+    padding: 0;
+    color: base.$color-dark-text;
+    font-size: 36px;
+  }
 }
 
 #triangle-container {
-	height: 30px;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+  height: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
-	#triangle {
-		background-color: color.scale(base.$color-dark-primary, $lightness: -50%);
-		width: 50px;
-		height: 50px;
-		display: inline-block;
-		transform: translateY(-30px) rotate(45deg);
-	}
+  #triangle {
+    background-color: color.scale(base.$color-dark-primary, $lightness: -50%);
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    transform: translateY(-30px) rotate(45deg);
+  }
 }
 
 #windows-container {
-	flex: 1;
+  flex: 1;
 
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-	#windows {
-		flex: 1;
+  #windows {
+    flex: 1;
 
-		margin: 50px 100px;
+    margin: 50px 100px;
 
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax($preview-width, auto));
-		gap: 30px;
-		align-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($preview-width, auto));
+    gap: 30px;
+    align-content: center;
 
-		.preview {
-			justify-self: center;
-		}
-	}
+    .preview {
+      justify-self: center;
+    }
+  }
 }

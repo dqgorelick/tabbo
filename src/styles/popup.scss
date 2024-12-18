@@ -1,27 +1,27 @@
-@use 'base';
-@use 'theme';
+@use "base";
+@use "theme";
 
 h1 {
-	color: base.$color-accent;
-	margin: 5px auto;
-	padding: 0px;
-	font-size: base.$font-size-primary;
+  color: base.$color-accent;
+  margin: 5px auto;
+  padding: 0px;
+  font-size: base.$font-size-primary;
 }
 
 button {
-	color: base.$color-dark-text;
-	background-color: base.$color-dark-primary;
-	display: block;
-	border: 0;
-	height: 32px;
-	width: 100%;
-	font-size: 14px;
-	padding: 0;
-	vertical-align: middle;
+  color: base.$color-dark-text;
+  background-color: base.$color-dark-primary;
+  display: block;
+  border: 0;
+  height: 32px;
+  width: 100%;
+  font-size: 14px;
+  padding: 0;
+  vertical-align: middle;
 
-	@include base.hover-transition(background-color, base.$color-dark-secondary);
+  @include base.hover-transition(background-color, base.$color-dark-secondary);
 }
 
 .hide {
-	display: none;
+  display: none;
 }

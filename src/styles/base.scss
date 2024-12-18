@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use "sass:color";
 // figma: https://www.figma.com/file/uKCEBJneFOg1juhdmC4kg8/Tabbo
 
 // misc
@@ -8,22 +8,31 @@ $hover-change-amount: 15%;
 $radius: 5px;
 
 // colors
-$color-accent: #4376E6;
-$color-accent-hover: color.scale($color-accent, $lightness: -$hover-change-amount);
+$color-accent: #4376e6;
+$color-accent-hover: color.scale(
+  $color-accent,
+  $lightness: -$hover-change-amount
+);
 
 // dark
-$color-dark-text: #EAEAEA;
-$color-dark-text-hover: color.scale($color-dark-text, $lightness: -$hover-change-amount);
-$color-dark-primary: #393B3D;
-$color-dark-secondary: #4C4C4C;
+$color-dark-text: #eaeaea;
+$color-dark-text-hover: color.scale(
+  $color-dark-text,
+  $lightness: -$hover-change-amount
+);
+$color-dark-primary: #393b3d;
+$color-dark-secondary: #4c4c4c;
 $color-dark-background: #000000;
 
 // light
 $color-light-text: #000000;
-$color-light-text-hover: color.scale($color-light-text, $lightness: $hover-change-amount);
-$color-light-primary: #ECF0F1;
-$color-light-secondary: #ECF0F1;
-$color-light-background: #FFFFFF;
+$color-light-text-hover: color.scale(
+  $color-light-text,
+  $lightness: $hover-change-amount
+);
+$color-light-primary: #ecf0f1;
+$color-light-secondary: #ecf0f1;
+$color-light-background: #ffffff;
 
 // fonts
 $font-size-primary: 26px;
@@ -32,62 +41,61 @@ $font-size-tertiary: 18px;
 
 // fonts
 @font-face {
-	font-family: 'PT Sans';
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: url('../assets/PT_Sans/PTSans-Bold.ttf') format('truetype');
+  font-family: "PT Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/PT_Sans/PTSans-Bold.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: 'PT Sans';
-	font-style: italic;
-	font-weight: 700;
-	font-display: swap;
-	src: url('../assets/PT_Sans/PTSans-BoldItalic.ttf') format('truetype');
+  font-family: "PT Sans";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/PT_Sans/PTSans-BoldItalic.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: 'PT Sans';
-	font-style: italic;
-	font-weight: 400;
-	font-display: swap;
-	src: url('../assets/PT_Sans/PTSans-Italic.ttf') format('truetype');
+  font-family: "PT Sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/PT_Sans/PTSans-Italic.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: 'PT Sans';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url('../assets/PT_Sans/PTSans-Regular.ttf') format('truetype');
+  font-family: "PT Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/PT_Sans/PTSans-Regular.ttf") format("truetype");
 }
 
-$font: 'PT sans';
+$font: "PT sans";
 @mixin set-font() {
-	font-family: $font, sans-serif;
+  font-family: $font, sans-serif;
 }
-
 
 // misc
 @mixin reset-whitespace() {
-	margin: 0px;
-	padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 @mixin reset($prop) {
-	#{$prop}: 0;
+  #{$prop}: 0;
 }
 
 @mixin hover-transition($prop, $value) {
-	transition: $transition-hover-duration;
-	transition-property: $prop;
+  transition: $transition-hover-duration;
+  transition-property: $prop;
 
-	&:hover {
-		#{$prop}: $value;
-	}
+  &:hover {
+    #{$prop}: $value;
+  }
 }
 
 .spanner {
-	flex: 1;
+  flex: 1;
 }

@@ -1,14 +1,14 @@
-@use 'base';
+@use "base";
 
 html {
-	@include base.set-font();
+  @include base.set-font();
 
-	text-align: center;
+  text-align: center;
 }
 
 body {
-	@include base.reset-whitespace();
+  @include base.reset-whitespace();
 
-	width: 150px;
-	background-color: base.$color-dark-primary;
+  width: 150px;
+  background-color: base.$color-dark-primary;
 }
