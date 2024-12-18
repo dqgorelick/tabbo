@@ -2,10 +2,14 @@
   "extends": "@parcel/config-webextension",
   "transformers": {
     "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"],
-		"*-manifest.json": ["./parcel/manifest-version-transformer.ts", "@parcel/transformer-webextension"]
+    "*-manifest.json": [
+      "./parcel/manifest-concat-transformer.ts",
+      "./parcel/manifest-version-transformer.ts",
+      "@parcel/transformer-webextension"
+    ]
   },
-	"packagers": {
-		"*-manifest.json": "@parcel/packager-webextension"
-	},
-	"namers": ["./parcel/manifest-renamer.ts", "..."]
+  "packagers": {
+    "*-manifest.json": "@parcel/packager-webextension"
+  },
+  "namers": ["./parcel/manifest-renamer.ts", "..."]
 }

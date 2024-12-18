@@ -2,16 +2,15 @@ import { Transformer } from "@parcel/plugin";
 
 export default new Transformer({
   async loadConfig({ config }) {
-    const result = await config.getConfig<{ version: string }>(
-      ["package.json"],
+    const result = await config.getConfig<{ [key: string]: any }>(
+      ["src/manifest.json"],
       {
         parse: true,
-        packageKey: "version",
       },
     );
 
     if (!result) {
-      throw new Error("Could not get or parse package.json");
+      throw new Error("Could not get or parse src/manifest.json");
     }
 
     return result.contents;
@@ -23,10 +22,13 @@ export default new Transformer({
     }
 
     let source = await asset.getCode();
-    let parsed = JSON.parse(source);
-
-    parsed.version = config;
-    asset.setCode(JSON.stringify(parsed));
+    asset.setCode(
+      JSON.stringify({
+        ...config,
+        // make sure the browser specific manifest takes precedence
+        ...JSON.parse(source),
+      }),
+    );
 
     return [asset];
   },
