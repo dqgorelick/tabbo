@@ -1,43 +1,36 @@
-'use strict';
-
+"use strict";
 
 export enum Direction {
-	LEFT,
-	RIGHT,
-};
-
+  LEFT,
+  RIGHT,
+}
 
 export enum Command {
-	MOVE_RIGHT = "MOVE_RIGHT",
-	MOVE_LEFT = "MOVE_LEFT",
-	POP_TAB = "POP_TAB",
-	PUSH_TAB = "PUSH_TAB",
-};
-
+  MOVE_RIGHT = "MOVE_RIGHT",
+  MOVE_LEFT = "MOVE_LEFT",
+  POP_TAB = "POP_TAB",
+  PUSH_TAB = "PUSH_TAB",
+}
 
 export interface PortMessage {
-	action: PopUpCommand;
-};
-
+  action: PopUpCommand;
+}
 
 export enum PopUpCommand {
-	CHROME_KEYBINDS = "CHROME_KEYBINDS",
-	KEYBINDS = "KEYBINDS",
-	HELP = "HELP",
-	POP_TAB = "POP_TAB",
-	PUSH_TAB = "PUSH_TAB",
-	EXPLODE_WINDOW = "EXPLODE_WINDOW",
-	GATHER_WINDOW = "GATHER_WINDOW",
-};
+  CHROME_KEYBINDS = "CHROME_KEYBINDS",
+  KEYBINDS = "KEYBINDS",
+  HELP = "HELP",
+  POP_TAB = "POP_TAB",
+  PUSH_TAB = "PUSH_TAB",
+  EXPLODE_WINDOW = "EXPLODE_WINDOW",
+  GATHER_WINDOW = "GATHER_WINDOW",
+}
 
-
-export class CommandNotFoundError extends Error {};
-
+export class CommandNotFoundError extends Error {}
 
 export interface TabsOnActivatedEvent {
-	tabId: number;
-	windowId: number;
-};
-
+  tabId: number;
+  windowId: number;
+}
 
 export type TabsOnActivatedCallback = (e: TabsOnActivatedEvent) => void;
