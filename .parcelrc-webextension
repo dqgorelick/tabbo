@@ -3,13 +3,13 @@
   "transformers": {
     "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"],
     "*-manifest.json": [
-      "./parcel/manifest-concat-transformer.ts",
-      "./parcel/manifest-version-transformer.ts",
+      "./parcel/manifest-concat-transformer.js",
+      "./parcel/manifest-version-transformer.js",
       "@parcel/transformer-webextension"
     ]
   },
   "packagers": {
     "*-manifest.json": "@parcel/packager-webextension"
   },
-  "namers": ["./parcel/manifest-renamer.ts", "..."]
+  "namers": ["./parcel/manifest-renamer.js", "..."]
 }

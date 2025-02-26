@@ -2,7 +2,7 @@ import { Transformer } from "@parcel/plugin";
 
 export default new Transformer({
   async loadConfig({ config }) {
-    const result = await config.getConfig<{ [key: string]: any }>(
+    const result = await config.getConfig(
       ["src/manifest.json"],
       {
         parse: true,

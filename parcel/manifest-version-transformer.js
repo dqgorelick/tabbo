@@ -2,7 +2,7 @@ import { Transformer } from "@parcel/plugin";
 
 export default new Transformer({
   async loadConfig({ config }) {
-    const result = await config.getConfig<{ version: string }>(
+    const result = await config.getConfig(
       ["package.json"],
       {
         parse: true,
