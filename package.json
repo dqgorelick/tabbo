@@ -30,12 +30,12 @@
     "webextension-polyfill": "^0.10.0"
   },
   "devDependencies": {
-    "@parcel/config-default": "^2.11.0",
-    "@parcel/config-webextension": "^2.11.0",
-    "@parcel/packager-webextension": "^2.12.0",
-    "@parcel/transformer-sass": "^2.11.0",
-    "@parcel/transformer-typescript-tsc": "^2.11.0",
-    "@parcel/transformer-webextension": "^2.12.0",
+    "@parcel/config-default": "^2.0.0",
+    "@parcel/config-webextension": "^2.0.0",
+    "@parcel/packager-webextension": "^2.0.0",
+    "@parcel/transformer-sass": "^2.0.0",
+    "@parcel/transformer-typescript-tsc": "^2.0.0",
+    "@parcel/transformer-webextension": "^2.0.0",
     "@types/chrome": "0.0.x",
     "@types/firefox-webext-browser": "^120.0.0",
     "@types/jest": "^29.0.0",
@@ -51,9 +51,10 @@
     "puppeteer-firefox": "^0.5.0",
     "sass": "^1.30.0",
     "ts-jest": "^29.0.0",
-    "ts-loader": "^9.0.0",
     "typescript": "^5.0.0",
     "typescript-language-server": "^4.3.3"
   },
-  "browserslist": ["since 2019-01"]
+  "browserslist": [
+    "since 2019-01"
+  ]
 }
