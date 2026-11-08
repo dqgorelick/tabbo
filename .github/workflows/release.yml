@@ -1,0 +1,47 @@
+# .github/workflows/release.yml
+name: Attach built extensions to release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to backfill (e.g. v1.3.1)
+        required: true
+
+jobs:
+  build-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run all
+
+      - name: Rename zips for release assets
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="${{ inputs.tag }}"
+          fi
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          mkdir -p dist/release
+          cp dist/packed/chrome/tabbo.zip "dist/release/tabbo-chrome-${TAG}.zip"
+          cp dist/packed/firefox/tabbo.zip "dist/release/tabbo-firefox-${TAG}.zip"
+          ls -lh dist/release/
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          files: dist/release/*.zip
