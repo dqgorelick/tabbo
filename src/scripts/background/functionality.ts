@@ -145,9 +145,12 @@ export const duplicate = async (): Promise<void> => {
 };
 
 export const explodeWindow = async (): Promise<void> => {
-  const windows: browser.Windows.Window[] = await browser.windows.getAll({
-    populate: true,
-  });
+  const windows: browser.Windows.Window[] = (
+    await browser.windows.getAll({
+      populate: true,
+      windowTypes: ["normal"],
+    })
+  ).filter((w: browser.Windows.Window): boolean => w.state !== "fullscreen");
 
   windows.forEach((w: browser.Windows.Window): void => {
     if (!w.tabs) {
@@ -184,9 +187,12 @@ export const explodeWindow = async (): Promise<void> => {
 };
 
 export const gatherWindow = async (): Promise<void> => {
-  const windows: browser.Windows.Window[] = await browser.windows.getAll({
-    populate: true,
-  });
+  const windows: browser.Windows.Window[] = (
+    await browser.windows.getAll({
+      populate: true,
+      windowTypes: ["normal"],
+    })
+  ).filter((w: browser.Windows.Window): boolean => w.state !== "fullscreen");
 
   let isFirstWindow: boolean = true;
   let firstWindowId: number | undefined;
