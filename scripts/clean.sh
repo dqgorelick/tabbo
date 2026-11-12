@@ -1,4 +1,4 @@
-#j!/usr/bin/env bash
+#!/usr/bin/env bash
 
-rm -r .parcel-cache/
-rm -r dist/**/*
+rm -rf .parcel-cache/
+rm -rf dist/**/*
