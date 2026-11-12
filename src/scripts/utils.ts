@@ -16,7 +16,9 @@ export const queryOrThrow = (query: string): HTMLElement => {
 
 export const tabs = {
   getCurrent: async (): Promise<browser.Tabs.Tab> => {
-    return (await browser.tabs.query({ active: true, currentWindow: true }))[0];
+    return (
+      await browser.tabs.query({ active: true, lastFocusedWindow: true })
+    )[0];
   },
 };
 

@@ -9,7 +9,7 @@ import browser from "webextension-polyfill";
 browser.commands.onCommand.addListener(async (cmd: string): Promise<void> => {
   // tabbo only supports operating on normal windows
   const currentWindow: browser.Windows.Window =
-    await browser.windows.getCurrent();
+    await browser.windows.getLastFocused();
   if (currentWindow.type !== "normal") {
     return;
   }
@@ -50,7 +50,7 @@ browser.runtime.onConnect.addListener((port: browser.Runtime.Port): void => {
   port.onMessage.addListener(async (cmd: tabbo.PortMessage): Promise<void> => {
     // tabbo only supports operating on normal windows
     const currentWindow: browser.Windows.Window =
-      await browser.windows.getCurrent();
+      await browser.windows.getLastFocused();
     if (currentWindow.type !== "normal") {
       return;
     }

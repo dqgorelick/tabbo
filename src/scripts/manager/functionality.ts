@@ -91,7 +91,8 @@ export const moveTabToWindow = async (
 };
 
 export const main = async (sendTabID: number): Promise<void> => {
-  const current: browser.Windows.Window = await browser.windows.getCurrent();
+  const current: browser.Windows.Window =
+    await browser.windows.getLastFocused();
   const t: browser.Tabs.Tab = await browser.tabs.get(sendTabID);
   /*
    *let currentScreenshot = await browser.tabs.captureVisibleTab(

@@ -8,7 +8,7 @@ import browser from "webextension-polyfill";
 
 export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
   const tabs: browser.Tabs.Tab[] = await browser.tabs.query({
-    currentWindow: true,
+    lastFocusedWindow: true,
   });
   const pinnedTabs: browser.Tabs.Tab[] = tabs.filter(
     (e: browser.Tabs.Tab): boolean => e.pinned,
@@ -45,7 +45,7 @@ export const moveTab = async (direction: tabbo.Direction): Promise<void> => {
 };
 
 export const popTab = async (): Promise<void> => {
-  const w: browser.Windows.Window = await browser.windows.getCurrent({
+  const w: browser.Windows.Window = await browser.windows.getLastFocused({
     populate: true,
   });
 
